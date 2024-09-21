@@ -23,11 +23,58 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    Route::resource('movies',MovieController::class);
-    Route::resource('showtimes',ShowTimeController::class);
-    Route::resource('seats',SeatController::class);
-    Route::resource('cinemas',CinemaController::class);
-    Route::resource('screens',ScreenController::class);
+    Route::controller(MovieController::class)->prefix('movies')->name('movies.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::get('create','create')->name('create');
+        Route::post('store','store')->name('store');
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::patch('update/{id}','update')->name('update');
+        Route::delete('delete/{id}','delete')->name('delete');
+    });
+
+    Route::controller(ShowTimeController::class)->prefix('showtimes')->name('showtimes.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::get('create','create')->name('create');
+        Route::post('store','store')->name('store');
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::patch('update/{id}','update')->name('update');
+        Route::delete('delete/{id}','delete')->name('delete');
+        });
+
+    Route::controller(SeatController::class)->prefix('seats')->name('seats.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::get('create','create')->name('create');
+        Route::post('store','store')->name('store');
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::patch('update/{id}','update')->name('update');
+        Route::delete('delete/{id}','delete')->name('delete');
+    });
+
+
+    Route::controller(CinemaController::class)->prefix('cinemas')->name('cinemas.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::get('create','create')->name('create');
+        Route::post('store','store')->name('store');
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::patch('update/{id}','update')->name('update');
+        Route::delete('delete/{id}','delete')->name('delete');
+                });
+
+    Route::controller(ScreenController::class)->prefix('screens')->name('screens.')->group(function(){
+        Route::get('/','index')->name('index');
+        Route::get('create','create')->name('create');
+        Route::post('store','store')->name('store');
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::patch('update/{id}','update')->name('update');
+        Route::delete('delete/{id}','delete')->name('delete');
+                });
+
+
+    // Route::resource('movies',MovieController::class);
+    // Route::resource('showtimes',ShowTimeController::class);
+    // Route::resource('seats',SeatController::class);
+    // Route::resource('cinemas',CinemaController::class);
+    // Route::resource('screens',ScreenController::class);
 });
 
 require __DIR__.'/auth.php';
