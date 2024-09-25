@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('screens', function (Blueprint $table) {
             $table->id();
-            $table->integer('screen_number');
+            $table->string('screen_code');
             $table->integer('seat_capacity');
             $table->string('screen_type');
             $table->foreignId('cinema_id')->constrained();

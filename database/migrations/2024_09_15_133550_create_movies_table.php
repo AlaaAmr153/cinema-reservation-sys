@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('poster');
-            $table->integer('duration');
+            $table->string('duration');
             $table->integer('rating')->nullable();
-            $table->date('release_date');
+            $table->string('release_date');
             $table->string('director');
             $table->text('cast');
             $table->text('description');

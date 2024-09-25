@@ -20,7 +20,7 @@ class ShowTimeController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.showtime.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class ShowTimeController extends Controller
      */
     public function show(ShowTime $showTime)
     {
-        //
+
     }
 
     /**
