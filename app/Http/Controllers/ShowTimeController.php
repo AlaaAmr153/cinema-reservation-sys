@@ -10,9 +10,14 @@ class ShowTimeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        // try{
+        //     $showtimes=ShowTime::query();
+
+        // }catch(\Exception $exception){
         return view('dashboard.showtime.index');
+        // }
     }
 
     /**
@@ -20,7 +25,11 @@ class ShowTimeController extends Controller
      */
     public function create()
     {
+        // try{
+
+        // }catch(\Exception $exception){
         return view('dashboard.showtime.create');
+        // }
     }
 
     /**
@@ -28,7 +37,11 @@ class ShowTimeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+
+        }catch(\Exception $exception){
+            return to_route('showtimes.index')->with('message',$exception->getMessage());
+        }
     }
 
     /**
@@ -36,7 +49,7 @@ class ShowTimeController extends Controller
      */
     public function show(ShowTime $showTime)
     {
-
+        //
     }
 
     /**
@@ -44,7 +57,11 @@ class ShowTimeController extends Controller
      */
     public function edit(ShowTime $showTime)
     {
-        //
+        try{
+
+        }catch(\Exception $exception){
+            return to_route('showtimes.index')->with('message',$exception->getMessage());
+        }
     }
 
     /**
@@ -52,14 +69,24 @@ class ShowTimeController extends Controller
      */
     public function update(Request $request, ShowTime $showTime)
     {
-        //
+        try{
+
+        }catch(\Exception $exception){
+            return to_route('showtimes.index')->with('message',$exception->getMessage());
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ShowTime $showTime)
+    public function destroy(string $id)
     {
-        //
+        try{
+            ShowTime::destroy($id);
+            return to_route('showtimes.index')->with('message','showtime has been deleted');
+
+        }catch(\Exception $exception){
+            return to_route('showtimes.index')->with('message',$exception->getMessage());
+        }
     }
 }
