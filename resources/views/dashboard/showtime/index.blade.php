@@ -77,7 +77,6 @@
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                                 Show Date
                                             </th>
-
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                                 Actions
@@ -86,34 +85,35 @@
                                         </thead>
                                         <tbody>
 
+                                            @forelse ($showtimes as $key=> $showtime)
                                             <tr class="bg-white border-b text-center transition duration-300 ease-in-out hover:bg-gray-100">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
-                                                a
+                                                    {{$showtimes->firstItem() + $key}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                b
+                                                    {{$showtime->movie_id ? $showtime->movie->poster:''}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    b
+                                                    {{$showtime->movie_id ? $showtime->movie->title :''}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    c
+                                                    {{$showtime->screen_id ? $showtime->screen->screen_code :''}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    d
+                                                    {{$showtime->show_time}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    e
+                                                    {{$showtime->show_date}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     <div class="flex justify-evenly">
                                                         <div>
-                                                            <a href="">
+                                                            <a href="{{route('showtimes.edit',$showtime->id)}}">
                                                                 <i class="fa-solid fa-pen-to-square text-lg"></i></a>
                                                         </div>
                                                         <div>
                                                             <form method="post"
-                                                                  {{-- action=""> --}}
+                                                                action="{{route('showtimes.destroy',$showtime->id)}}">
                                                                 @method('DELETE')
                                                                 @csrf
                                                                 <button type="submit"><i class="fa-solid fa-trash text-lg"
@@ -124,17 +124,17 @@
 
                                                 </td>
                                             </tr>
-
-                                            {{-- <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                        @empty
+                                            <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                                                 <td colspan="4"
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                    No Movies Yet
+                                                    No Showtimes Yet
                                                 </td>
-                                            </tr> --}}
-
+                                            </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
-
+                                    <div class="mt-2">{{$showtimes->links()}}</div>
                                 </div>
                             </div>
                         </div>

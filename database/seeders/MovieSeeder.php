@@ -15,7 +15,7 @@ class MovieSeeder extends Seeder
     {
         Movie::create([
             'title' => 'Bagman',
-            'poster' => 'public/images/moviesposter/Bagman.jpg',
+            'poster' => 'images/moviesposter/Bagman.jpg',
             'duration' => '1 hour and 32 minutes',
             'release_date' => 'September 27, 2024',
             'director' => 'Colm McCarthy',
@@ -30,7 +30,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Damsel',
-            'poster' => 'public/images/moviesposter/damsel.jpg',
+            'poster' => 'images/moviesposter/damsel.jpg',
             'duration' => '1 hour 48 minutes',
             'release_date' => 'March 8, 2024',
             'director' => 'Juan Carlos Fresnadillo',
@@ -52,7 +52,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Deadpool & Wolverine',
-            'poster' => 'public/images/moviesposter/Deadpool & Wolverine.jpg',
+            'poster' => 'images/moviesposter/Deadpool & Wolverine.jpg',
             'duration' => '2 hours 7 minutes',
             'release_date' => 'July 26, 2024',
             'director' => 'Shawn Levy',
@@ -74,7 +74,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Despicable Me4',
-            'poster' => 'public/images/moviesposter/despicable me4.jpg',
+            'poster' => 'images/moviesposter/despicable me4.jpg',
             'duration' => '1 hour and 34 minutes',
             'release_date' => 'July 2024',
             'director' => 'Chris Renaud',
@@ -90,7 +90,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Evil Dead Rise',
-            'poster' => 'public/images/moviesposter/Evil Dead Rise.jpg',
+            'poster' => 'images/moviesposter/Evil Dead Rise.jpg',
             'duration' => '96 minutes',
             'release_date' => 'April 21, 2023',
             'director' => 'ee Cronin',
@@ -111,7 +111,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Get Out',
-            'poster' => 'public/images/moviesposter/get out.jpg',
+            'poster' => 'images/moviesposter/get out.jpg',
             'duration' => '104 minutes',
             'release_date' => 'February 24, 2017',
             'director' => 'Jordan Peele',
@@ -131,7 +131,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Harry Potter And The Deathly Hallows',
-            'poster' => 'public/images/moviesposter/Harry Potter and the Deathly Hallows.jpg',
+            'poster' => 'images/moviesposter/Harry Potter and the Deathly Hallows.jpg',
             'duration' => '146 minutes',
             'release_date' => 'November 19, 2010',
             'director' => 'J.K. Rowling',
@@ -162,7 +162,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Howel The Moving Castle',
-            'poster' => 'public/images/moviesposter/howel the movie castle.jpg',
+            'poster' => 'images/moviesposter/howel the movie castle.jpg',
             'duration' => '119 minutes',
             'release_date' => 'November 20, 2004',
             'director' => 'Hayao Miyazaki',
@@ -182,7 +182,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'IF',
-            'poster' => 'public/images/moviesposter/IF.jpg',
+            'poster' => 'images/moviesposter/IF.jpg',
             'duration' => '104 minutes',
             'release_date' => 'November 5, 2021',
             'director' => 'T.J. Smith',
@@ -200,7 +200,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Dolittle',
-            'poster' => 'public/images/moviesposter/Dolittle.jpg',
+            'poster' => 'images/moviesposter/Dolittle.jpg',
             'duration' => '101 minutes',
             'release_date' => 'January 17, 2020',
             'director' => 'Justin Baldoni',
@@ -221,7 +221,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Doctor Strange',
-            'poster' => 'public/images/moviesposter/Doctor Strange In The Multiverse Of Madness - 2022.jpg',
+            'poster' => 'images/moviesposter/Doctor Strange In The Multiverse Of Madness - 2022.jpg',
             'duration' => '126 minutes',
             'release_date' => 'May 6, 2022',
             'director' => 'Sam Raimi',
@@ -243,7 +243,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Puss In Boots',
-            'poster' => 'public/images/moviesposter/Puss in boots.jpg',
+            'poster' => 'images/moviesposter/Puss in boots.jpg',
             'duration' => '102 minutes',
             'release_date' => 'December 21, 2022',
             'director' => 'Joel Crawford',
@@ -264,7 +264,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Speak No Evil',
-            'poster' => 'public/images/moviesposter/Speak No Evil Movie Poster.jpg',
+            'poster' => 'images/moviesposter/Speak No Evil Movie Poster.jpg',
             'duration' => '1 hour and 50 minutes',
             'release_date' => 'September 11, 2024',
             'director' => ' James Watkins',
@@ -283,7 +283,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'Spirited Away',
-            'poster' => 'public/images/moviesposter/Spirited Away.jpg',
+            'poster' => 'images/moviesposter/Spirited Away.jpg',
             'duration' => '125 minutes',
             'release_date' => 'July 20, 2001',
             'director' => 'Hayao Miyazaki',
@@ -303,7 +303,7 @@ class MovieSeeder extends Seeder
         ]);
         Movie::create([
             'title' => 'The Maze Runner',
-            'poster' => 'public/images/moviesposter/The Maze Runner.jpg',
+            'poster' => 'images/moviesposter/The Maze Runner.jpg',
             'duration' => '113 minutes',
             'release_date' => 'September 19, 2014',
             'director' => 'Wes Ball',

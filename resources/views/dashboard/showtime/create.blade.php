@@ -12,10 +12,12 @@
                 @csrf
                 <div class="mb-5">
                     <x-input-label>Choose Movie</x-input-label>
-                    <select id="company" name="company"
+                    <select id="movie" name="movie_id"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-black focus:shadow-md mb-4">
                         <option value="">Select Movie</option>
-                        <option value="1">Company A</option>
+                        @foreach ($movies as $id=>$poster )
+                            <option value="{{$id}}">{{$poster}}</option>
+                        @endforeach
                     </select
 
                         @error('movie')
@@ -25,12 +27,12 @@
                 </div>
             <div class="mb-5">
                 <x-input-label>Choose Screen</x-input-label>
-                <select id="company" name="company"
+                <select id="screen" name="screen_id"
                 class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-black focus:shadow-md mb-3">
                     <option value="">Select Screen</option>
-                    {{-- @foreach ( as ) --}}
-                    <option value="1">Company A</option>
-                    {{-- @endforeach --}}
+                    @foreach ($screens as $id=>$screen_code )
+                    <option value="{{$id}}">{{$screen_code}}</option>
+                    @endforeach
                 </select
 
                         @error('screen')
