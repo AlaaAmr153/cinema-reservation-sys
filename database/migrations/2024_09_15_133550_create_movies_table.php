@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('poster');
             $table->string('duration');
             $table->integer('rating')->nullable();
-            $table->string('release_date');
+            $table->date('release_date');
             $table->string('director');
             $table->text('cast');
             $table->text('description');
