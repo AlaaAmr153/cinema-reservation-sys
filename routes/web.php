@@ -33,8 +33,9 @@ Route::middleware('auth')->group(function () {
         Route::post('update/{id}', 'update')->name('update');
         Route::delete('delete/{id}', 'delete')->name('delete');
         Route::get('/{id}/images', 'showImages')->name('images');
-        Route::post('/{id}/images', 'store')->name('movie_images.store');
     });
+
+
 
     Route::controller(ShowTimeController::class)->prefix('showtimes')->name('showtimes.')->group(function () {
         Route::get('/', 'index')->name('index');
@@ -73,6 +74,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('delete/{id}', 'delete')->name('delete');
     });
 
+    Route::post('/movies/{id}/images', [MovieImageController::class, 'store'])->name('movie_images.store');
     Route::delete('/movie_images/{id}', [MovieImageController::class, 'destroy'])->name('movie_images.destroy');
 
 
