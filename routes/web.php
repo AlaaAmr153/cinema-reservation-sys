@@ -9,7 +9,7 @@ use App\Http\Controllers\ShowTimeController;
 use App\Models\Seat;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+ Route::get('/', function () {
     return view('welcome');
 });
 
@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
             Route::post('store','store')->name('store');
             Route::get('/edit/{id}','edit')->name('edit');
             Route::patch('update/{id}','update')->name('update');
-            Route::delete('delete/{id}','delete')->name('delete');
+            Route::delete('delete/{id}','destroy')->name('destroy');
         });
 
     Route::controller(SeatController::class)->prefix('seats')->name('seats.')->group(function(){

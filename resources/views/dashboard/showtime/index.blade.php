@@ -63,11 +63,15 @@
                                             </th>
                                             <th scope="col"
                                             class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                            Movie Name
+                                                Movie Name
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                                 Screen
+                                            </th>
+                                            <th scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Cinema
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
@@ -91,13 +95,20 @@
                                                     {{$showtimes->firstItem() + $key}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    {{$showtime->movie_id ? $showtime->movie->poster:''}}
+                                                    @if($showtime->movie_id && $showtime->movie->poster)
+                                                    <img src="{{ asset($showtime->movie->poster) }}" alt="Movie Poster" class="w-20 h-auto">
+                                                    @else
+                                                            No Poster Available
+                                                     @endif
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     {{$showtime->movie_id ? $showtime->movie->title :''}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     {{$showtime->screen_id ? $showtime->screen->screen_code :''}}
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    {{$showtime->screen && $showtime->screen->cinema ? $showtime->screen->cinema->cinema_name :''}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     {{$showtime->show_time}}
@@ -113,7 +124,7 @@
                                                         </div>
                                                         <div>
                                                             <form method="post"
-                                                                action="{{route('showtimes.destroy',$showtime->id)}}">
+                                                                action="{{route('showtimes.destroy', $showtime->id)}}">
                                                                 @method('DELETE')
                                                                 @csrf
                                                                 <button type="submit"><i class="fa-solid fa-trash text-lg"

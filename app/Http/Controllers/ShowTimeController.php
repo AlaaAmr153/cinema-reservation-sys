@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cinema;
 use App\Models\Movie;
 use App\Models\Screen;
 use App\Models\ShowTime;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
+use function Laravel\Prompts\select;
 
 class ShowTimeController extends Controller
 {
@@ -26,7 +29,7 @@ class ShowTimeController extends Controller
                 ->orWhere('show_time', 'like', '%' . $request->search . '%');
 
             return view('dashboard.showtime.index')->with('showtimes',$showtimes->select('show_times.*')
-            ->orderBy('created_at', 'desc')->paginate(5));
+            ->orderBy('created_at', 'desc')->paginate(10));
 
         }catch(\Exception $exception){
             return to_route('showtimes.index')->with('message',$exception->getMessage());
@@ -36,15 +39,23 @@ class ShowTimeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         try{
-                $movies = Movie::orderBy('title')->pluck('poster','id')->toArray();
-                $screens = Screen::orderBy('screen_code')->pluck('screen_code','id')->toArray();
 
+                $movies = Movie::all();
+                $cinemas= Cinema::all();
+                $screens =[];
+
+                if ($request->has('cinema_id')) {
+                    // Filter screens based on the selected cinema
+                    $screens = Screen::where('cinema_id', $request->cinema_id)->select('screens.screen_code');
+                    dd($screens);
+                }
                 return view('dashboard.showtime.create')
                 ->with(compact('movies'))
-                ->with(compact('screens'));
+                ->with(compact('screens'))
+                ->with(compact('cinemas'));
 
         }catch(\Exception $exception){
         return to_route('showtimes.index')->with('message',$exception->getMessage());
@@ -63,8 +74,14 @@ class ShowTimeController extends Controller
             'time'=>'required'
         ]);
         try{
-            ShowTime::create($request->except('_token'));
-            return to_route('showtimes.create')->with('message','showtime has been created');
+            ShowTime::create([
+                'movie_id'=>$request->movie_id,
+                'screen_id'=>$request->screen_id,
+                'show_date'=>$request->date,
+                'show_time'=>$request->time,
+            ]);
+
+            return to_route('showtimes.index')->with('message','showtime has been created');
 
         }catch(\Exception $exception){
             return to_route('showtimes.index')->with('message',$exception->getMessage());
@@ -82,16 +99,24 @@ class ShowTimeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id,Request $request)
     {
         try{
             $showtime = ShowTime::findOrFail($id);
-            $movies = Movie::orderBy('title')->pluck('poster','id')->toArray();
-            $screens = Screen::orderBy('screen_code')->pluck('screen_code','id')->toArray();
+            $movies = Movie::all();
+            $cinemas= Cinema::all();
+            $screens =[];
+
+            if ($request->has('cinema_id')) {
+                // Filter screens based on the selected cinema
+                $screens = Screen::where('cinema_id', $request->cinema_id)->select('screens.screen_code');
+                dd($screens);}
 
             return view('dashboard.showtime.edit')
+            ->with(compact('showtime'))
             ->with(compact('movies'))
-            ->with(compact('screens'));
+            ->with(compact('screens'))
+            ->with(compact('cinemas'));
 
         }catch(\Exception $exception){
             return to_route('showtimes.index')->with('message',$exception->getMessage());
@@ -110,7 +135,13 @@ class ShowTimeController extends Controller
             'time'=>'required']);
         try{
             $showtime = ShowTime::findOrFail($id);
-            $showtime->update($request->except('_token'));
+            $showtime->update([
+                'movie_id'=>$request->movie_id,
+                'screen_id'=>$request->screen_id,
+                'show_date'=>$request->date,
+                'show_time'=>$request->time,
+            ]);
+;
             return to_route('showtimes.index')->with('message','showtime has been updated');
         }catch(\Exception $exception){
             return to_route('showtimes.index')->with('message',$exception->getMessage());
