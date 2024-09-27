@@ -59,39 +59,28 @@
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Tttle
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Description
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Duration
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Release Date
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Director
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Cast
+                                                Movie
                                             </th>
                                             <th scope="col"
                                             class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Country
+                                            Movie Name
                                             </th>
                                             <th scope="col"
-                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                            trailer_url
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Screen
                                             </th>
                                             <th scope="col"
-                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                 Actions
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Show time
+                                            </th>
+                                            <th scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Show Date
+                                            </th>
+
+                                            <th scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Actions
                                             </th>
                                         </tr>
                                         </thead>
@@ -99,10 +88,13 @@
 
                                             <tr class="bg-white border-b text-center transition duration-300 ease-in-out hover:bg-gray-100">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
-                                                 a
+                                                a
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                 b
+                                                b
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    b
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     c
@@ -112,18 +104,6 @@
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     e
-                                                </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    f
-                                                </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    g
-                                                </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    h
-                                                </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    i
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     <div class="flex justify-evenly">

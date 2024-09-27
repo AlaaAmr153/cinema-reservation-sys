@@ -26,7 +26,9 @@ class DatabaseSeeder extends Seeder
            CountrySeeder::class,
            MovieGenreSeeder::class,
            MovieSeeder::class,
-           MovieImage::class
+           CinemaSeeder::class,
+           ScreenSeeder::class,
+        //    MovieImage::class
         ]);
     }
 }
