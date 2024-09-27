@@ -47,7 +47,7 @@ class MovieController extends Controller
             'rating' => 'nullable|numeric|min:0|max:10',
             'country_id' => 'required|exists:countries,id',
             'poster' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image' => 'required|array',
+            'image' => 'nullable|array',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'genre_id' => 'required|exists:movie_genres,id',
         ]);
@@ -70,9 +70,7 @@ class MovieController extends Controller
             $path_img = Storage::disk('public')->putFileAs('images/moviesimages', $img, $img_name);
             $movie->movie_image()->create(['img' => $path_img]);
         }
-
         $movie->moviegenre()->attach($request->genre_id);
-
         return redirect()->route('movies.index')->with('success', 'Movie created successfully');
     }
 
@@ -94,17 +92,18 @@ class MovieController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'cast' => 'nullable|string',
-            'trailer' => 'nullable|url',
-            'director' => 'nullable|string',
-            'duration' => 'nullable|string',
-            'release_date' => 'nullable|date',
+            'description' => 'required|string',
+            'cast' => 'required|string',
+            'trailer' => 'required|url',
+            'director' => 'required|string',
+            'duration' => 'required|string',
+            'release_date' => 'required|date',
             'rating' => 'nullable|numeric|min:0|max:10',
-            'country_id' => 'nullable|exists:countries,id',
-            'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'genre_id' => 'nullable|exists:movie_genres,id',
+            'country_id' => 'required|exists:countries,id',
+            'poster' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'nullable|array',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'genre_id' => 'required|exists:movie_genres,id',
         ]);
         $movie = Movie::findOrFail($id);
         if ($request->hasFile('poster')) {
@@ -140,7 +139,6 @@ class MovieController extends Controller
                 $movie->movie_image()->create(['img' => $path_img]);
             }
         }
-
         if ($request->has('genre_id')) {
             $movie->moviegenre()->sync($request->genre_id);
         }
@@ -175,7 +173,6 @@ class MovieController extends Controller
                 $image->delete();
             }
         }
-
         $movie->moviegenre()->detach();
         $movie->delete();
         return redirect()->route('movies.index')->with('success', 'Movie deleted successfully');
