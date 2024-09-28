@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Screen extends Model
 {
     use HasFactory;
+    // protected $fillable= ['screen_code','seat_capacity','screen_type','cinema_id','under_maintainance'];
     protected $guarded = ['id', 'created_at', 'updated_at'];
     public function cinema()
     {

@@ -1,0 +1,49 @@
+.custom-selectbox {
+    position: relative;
+    width: 200px;
+}
+
+.selectbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.selectbox-img {
+    width: 40px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.selectbox-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
+.selectbox-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.selectbox-option:hover {
+    background-color: #f0f0f0;
+}
+
+.option-img {
+    width: 60px;
+    height: 80px;
+    margin-right: 10px;
+}

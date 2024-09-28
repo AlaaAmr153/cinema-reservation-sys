@@ -59,35 +59,23 @@
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Tttle
+                                                Screen Code
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Description
+                                                Seat Capacity
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Duration
+                                                Screen Type
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Release Date
+                                                Cinema Name
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Director
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Cast
-                                            </th>
-                                            <th scope="col"
-                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Country
-                                            </th>
-                                            <th scope="col"
-                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                            trailer_url
+                                                Under Maintainance
                                             </th>
                                             <th scope="col"
                                                  class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
