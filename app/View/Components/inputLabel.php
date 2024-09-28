@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class button-link extends Component
+class inputLabel extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class button-link extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.button-link');
+        return view('components.input-label');
     }
 }
