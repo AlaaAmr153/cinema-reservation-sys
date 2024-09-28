@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::patch('update/{id}', 'update')->name('update');
         Route::delete('delete/{id}', 'delete')->name('delete');
+        Route::get('/{id}/images', 'showImages')->name('images');
     });
 
     Route::controller(ShowTimeController::class)->prefix('showtimes')->name('showtimes.')->group(function () {
