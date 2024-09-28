@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Movie;
-use App\Models\MovieImage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

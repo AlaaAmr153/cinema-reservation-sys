@@ -21,7 +21,11 @@
                                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
                             </div>
-
+                            <div class="text-xl font-normal  max-w-full flex-initial">
+                                <div class="py-2">This is a success messsage
+                                    <div class="text-sm font-base">{{ session('message') }}</div>
+                                </div>
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -104,7 +108,7 @@
                                                 class="bg-white border-b text-center transition duration-300 ease-in-out hover:bg-gray-100">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
                                                     @if (Storage::disk('public')->exists($movie->poster))
-                                                        <img src="{{ asset('storage/' .$movie->poster) }}">
+                                                        <img src="{{ asset('storage/' . $movie->poster) }}">
                                                     @else
                                                         <img src="{{ asset($movie->poster) }}">
                                                     @endif
@@ -162,10 +166,12 @@
                                                                 <i class="fa-solid fa-pen-to-square text-lg"></i></a>
                                                         </div>
                                                         <div>
-                                                            <form method="post" action="{{ route('movies.delete', $movie->id) }}"> @method('DELETE')
+                                                            <form method="post"
+                                                                action="{{ route('movies.delete', $movie->id) }}">
+                                                                @method('DELETE')
                                                                 @csrf <button type="submit"><i
-                                                                    class="fa-solid fa-trash text-lg"
-                                                                    style="color: #ff0000;"></i>
+                                                                        class="fa-solid fa-trash text-lg"
+                                                                        style="color: #ff0000;"></i>
                                                                 </button>
                                                             </form>
                                                         </div>
@@ -188,6 +194,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </x-app-layout>

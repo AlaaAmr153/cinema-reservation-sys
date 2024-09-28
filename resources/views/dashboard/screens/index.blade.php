@@ -96,46 +96,38 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-
+                                            @foreach($screens as $screen)
                                             <tr class="bg-white border-b text-center transition duration-300 ease-in-out hover:bg-gray-100">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
-                                                 a
+                                                 {{$screen['id']}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                 b
+                                                {{$screen['screen_code']}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    c
+                                                {{$screen['seat_capacity']}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    d
+                                                {{$screen['screen_type']}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    e
+                                                {{ $screen->cinema->cinema_name }}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    f
+                                                {{$screen['under_maintainance']}}
                                                 </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    g
-                                                </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    h
-                                                </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    i
-                                                </td>
+
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     <div class="flex justify-evenly">
                                                         <div>
-                                                            <a href="">
+                                                            <a href="{{ route('screens.edit', $screen->id) }}">
                                                                 <i class="fa-solid fa-pen-to-square text-lg"></i></a>
                                                         </div>
+
                                                         <div>
-                                                            <form method="post"
-                                                                  {{-- action=""> --}}
-                                                                @method('DELETE')
+                                                            <form method="post" action="{{route('screens.delete',['id' => $screen->id])}}">
                                                                 @csrf
+                                                                @method('DELETE')
                                                                 <button type="submit"><i class="fa-solid fa-trash text-lg"
                                                                     style="color: #ff0000;"></i>
                                                                 </button>
@@ -144,7 +136,7 @@
 
                                                 </td>
                                             </tr>
-
+                                            @endforeach
                                             {{-- <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                                                 <td colspan="4"
                                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">

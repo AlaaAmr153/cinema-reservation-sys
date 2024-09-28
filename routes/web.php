@@ -10,7 +10,6 @@ use App\Http\Controllers\ShowTimeController;
 use App\Models\Seat;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -77,6 +76,51 @@ Route::middleware('auth')->group(function () {
     Route::post('/movies/{id}/images', [MovieImageController::class, 'store'])->name('movie_images.store');
     Route::delete('/movie_images/{id}', [MovieImageController::class, 'destroy'])->name('movie_images.destroy');
 
+    Route::controller(MovieController::class)->prefix('movies')->name('movies.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::patch('update/{id}', 'update')->name('update');
+        Route::delete('delete/{id}', 'delete')->name('delete');
+    });
+
+    Route::controller(ShowTimeController::class)->prefix('showtimes')->name('showtimes.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::patch('update/{id}', 'update')->name('update');
+        Route::delete('delete/{id}', 'delete')->name('delete');
+    });
+
+    Route::controller(SeatController::class)->prefix('seats')->name('seats.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::patch('update/{id}', 'update')->name('update');
+        Route::delete('delete/{id}', 'delete')->name('delete');
+    });
+
+
+    Route::controller(CinemaController::class)->prefix('cinemas')->name('cinemas.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::patch('update/{id}', 'update')->name('update');
+        Route::delete('delete/{id}', 'delete')->name('delete');
+    });
+
+    Route::controller(ScreenController::class)->prefix('screens')->name('screens.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::patch('update/{id}', 'update')->name('update');
+        Route::delete('delete/{id}', 'delete')->name('delete');
+    });
 
 
     // Route::resource('movies',MovieController::class);
