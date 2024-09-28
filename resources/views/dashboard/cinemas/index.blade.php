@@ -12,7 +12,7 @@
 
                     @if(session()->has('message'))
                         <div
-                            class="flex justify-left items-center m-1 font-medium py-1 px-2 bg-white rounded-md text-green-100 bg-green-700 border border-green-700 ">
+                            class="flex justify-left items-center m-1 font-medium py-1 px-2 bg-white rounded-md text-green-300 bg-green-800 border border-green-700 ">
                             <div slot="avatar">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -57,37 +57,22 @@
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                                 #
                                             </th>
+
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Tttle
+                                                Cinema Name
+                                            </th>
+                                            <th scope="col"
+                                                class="text-sm font-medium text-gray-900 px-1 py-4 text-center ">
+                                                Location
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Description
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Duration
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Release Date
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Director
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Cast
+                                                Total Screens
                                             </th>
                                             <th scope="col"
                                             class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Country
-                                            </th>
-                                            <th scope="col"
-                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                            trailer_url
+                                                Contact Number
                                             </th>
                                             <th scope="col"
                                                  class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
@@ -96,65 +81,47 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-
+                                            @foreach ($cinemas as $key => $cinema)
                                             <tr class="bg-white border-b text-center transition duration-300 ease-in-out hover:bg-gray-100">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
-                                                 a
+                                                    {{$cinemas->firstItem() + $key}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                 b
+                                                 {{$cinema->cinema_name}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    c
+                                                {{$cinema->location}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    d
+                                                    {{$cinema->total_screens}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    e
-                                                </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    f
-                                                </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    g
-                                                </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    h
-                                                </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    i
+                                                    {{$cinema->contact_number}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     <div class="flex justify-evenly">
                                                         <div>
-                                                            <a href="">
+                                                            <a href="{{route('cinemas.edit',$cinema->id)}}">
                                                                 <i class="fa-solid fa-pen-to-square text-lg"></i></a>
                                                         </div>
                                                         <div>
-                                                            <form method="post"
-                                                                  {{-- action=""> --}}
+                                                            <form method="POST"
+                                                                  action="{{route('cinemas.delete',$cinema->id)}}">
                                                                 @method('DELETE')
                                                                 @csrf
-                                                                <button type="submit"><i class="fa-solid fa-trash text-lg"
+                                                                <button type="submit">
+                                                                    {{-- <a href="{{route('cinemas.delete',$cinema->id)}}"> --}}
+                                                                    <i class="fa-solid fa-trash text-lg"
                                                                     style="color: #ff0000;"></i>
                                                                 </button>
                                                             </form>
                                                         </div>
-
                                                 </td>
+                                                @endforeach
                                             </tr>
-
-                                            {{-- <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                                                <td colspan="4"
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                    No Movies Yet
-                                                </td>
-                                            </tr> --}}
-
                                         </tbody>
                                     </table>
-
+                                    <div class="mt-2">{{$cinemas->links()}}</div>
                                 </div>
                             </div>
                         </div>

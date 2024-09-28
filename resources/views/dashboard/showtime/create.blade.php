@@ -66,7 +66,6 @@
                         @enderror
 
                 </div>
-
                     <div class="w-full">
                         <div class="mb-5">
                             <x-input-label>Date</x-input-label>
