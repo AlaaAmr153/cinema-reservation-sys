@@ -14,7 +14,7 @@ class CinemaController extends Controller
     {
         $cinemas = Cinema::Paginate(10);
         return view('dashboard.cinemas.index', compact('cinemas'));
-        
+
         // $search = $request->input('search');
         // $srch_cinema= Cinema::when($search , function($query) use ($search){
         //     return $query->where('cinema_name', 'LIKE' , "%{$search}%");

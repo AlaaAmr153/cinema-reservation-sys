@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    @if (session()->has('message'))
+                    @if(session()->has('message'))
                         <div
                             class="flex justify-left items-center m-1 font-medium py-1 px-2 bg-white rounded-md text-green-100 bg-green-700 border border-green-700 ">
                             <div slot="avatar">
@@ -21,7 +21,11 @@
                                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
                             </div>
-
+                            <div class="text-xl font-normal  max-w-full flex-initial">
+                                <div class="py-2">This is a success messsage
+                                    <div class="text-sm font-base">{{session('message')}}</div>
+                                </div>
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -85,6 +89,7 @@
                                                 Cast
                                             </th>
                                             <th scope="col"
+<<<<<<< HEAD
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                                 Country
                                             </th>
@@ -149,10 +154,56 @@
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     <a href={{ $movie->trailer_url }}
                                                         class="text-blue-500">{{ $movie->title }} Trailer</a>
+=======
+                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Country
+                                            </th>
+                                            <th scope="col"
+                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                            trailer_url
+                                            </th>
+                                            <th scope="col"
+                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                 Actions
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr class="bg-white border-b text-center transition duration-300 ease-in-out hover:bg-gray-100">
+
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
+                                                 a
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                 b
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    c
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    d
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    e
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    f
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    g
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    h
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    i
+>>>>>>> screen_crud
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     <div class="flex justify-evenly">
                                                         <div>
+<<<<<<< HEAD
                                                             <a href="{{ route('movies.images', $movie->id) }}">
                                                                 <i class="fa-regular fa-image text-lg"></i>
                                                             </a>
@@ -165,6 +216,17 @@
                                                             <form method="post" action="{{ route('movies.delete', $movie->id) }}"> @method('DELETE')
                                                                 @csrf <button type="submit"><i
                                                                     class="fa-solid fa-trash text-lg"
+=======
+                                                            <a href="">
+                                                                <i class="fa-solid fa-pen-to-square text-lg"></i></a>
+                                                        </div>
+                                                        <div>
+                                                            <form method="post"
+                                                                  {{-- action=""> --}}
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button type="submit"><i class="fa-solid fa-trash text-lg"
+>>>>>>> screen_crud
                                                                     style="color: #ff0000;"></i>
                                                                 </button>
                                                             </form>
@@ -179,9 +241,17 @@
                                                     No Movies Yet
                                                 </td>
                                             </tr> --}}
+<<<<<<< HEAD
                                         @endforeach
                                     </tbody>
                                 </table>
+=======
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+>>>>>>> screen_crud
                             </div>
                         </div>
                     </div>
@@ -189,5 +259,8 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     </div>
+=======
+>>>>>>> screen_crud
 </x-app-layout>

@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
-use App\Models\Movie;
 use App\Models\MovieGenre;
-use App\Models\MovieImage;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Movie;
+use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {

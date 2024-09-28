@@ -57,6 +57,7 @@
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                                 #
                                             </th>
+<<<<<<< HEAD
 
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
@@ -73,6 +74,39 @@
                                             <th scope="col"
                                             class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                                 Contact Number
+=======
+                                            <th scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Tttle
+                                            </th>
+                                            <th scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Description
+                                            </th>
+                                            <th scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Duration
+                                            </th>
+                                            <th scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Release Date
+                                            </th>
+                                            <th scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Director
+                                            </th>
+                                            <th scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Cast
+                                            </th>
+                                            <th scope="col"
+                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                                Country
+                                            </th>
+                                            <th scope="col"
+                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                            trailer_url
+>>>>>>> screen_crud
                                             </th>
                                             <th scope="col"
                                                  class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
@@ -81,6 +115,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+<<<<<<< HEAD
                                             @foreach ($cinemas as $key => $cinema)
                                             <tr class="bg-white border-b text-center transition duration-300 ease-in-out hover:bg-gray-100">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
@@ -97,10 +132,41 @@
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     {{$cinema->contact_number}}
+=======
+
+                                            <tr class="bg-white border-b text-center transition duration-300 ease-in-out hover:bg-gray-100">
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
+                                                 a
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                 b
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    c
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    d
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    e
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    f
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    g
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    h
+                                                </td>
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                                    i
+>>>>>>> screen_crud
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     <div class="flex justify-evenly">
                                                         <div>
+<<<<<<< HEAD
                                                             <a href="{{route('cinemas.edit',$cinema->id)}}">
                                                                 <i class="fa-solid fa-pen-to-square text-lg"></i></a>
                                                         </div>
@@ -112,16 +178,44 @@
                                                                 <button type="submit">
                                                                     {{-- <a href="{{route('cinemas.delete',$cinema->id)}}"> --}}
                                                                     <i class="fa-solid fa-trash text-lg"
+=======
+                                                            <a href="">
+                                                                <i class="fa-solid fa-pen-to-square text-lg"></i></a>
+                                                        </div>
+                                                        <div>
+                                                            <form method="post"
+                                                                  {{-- action=""> --}}
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button type="submit"><i class="fa-solid fa-trash text-lg"
+>>>>>>> screen_crud
                                                                     style="color: #ff0000;"></i>
                                                                 </button>
                                                             </form>
                                                         </div>
+<<<<<<< HEAD
                                                 </td>
                                                 @endforeach
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="mt-2">{{$cinemas->links()}}</div>
+=======
+
+                                                </td>
+                                            </tr>
+
+                                            {{-- <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                                <td colspan="4"
+                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                    No Movies Yet
+                                                </td>
+                                            </tr> --}}
+
+                                        </tbody>
+                                    </table>
+
+>>>>>>> screen_crud
                                 </div>
                             </div>
                         </div>

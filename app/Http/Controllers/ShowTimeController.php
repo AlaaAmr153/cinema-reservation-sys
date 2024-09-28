@@ -9,8 +9,6 @@ use App\Models\ShowTime;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
-use function Laravel\Prompts\select;
-
 class ShowTimeController extends Controller
 {
     /**
@@ -29,7 +27,7 @@ class ShowTimeController extends Controller
                 ->orWhere('show_time', 'like', '%' . $request->search . '%');
 
             return view('dashboard.showtime.index')->with('showtimes',$showtimes->select('show_times.*')
-            ->orderBy('created_at', 'desc')->paginate(10));
+            ->orderBy('created_at', 'desc')->paginate(5));
 
         }catch(\Exception $exception){
             return to_route('showtimes.index')->with('message',$exception->getMessage());
