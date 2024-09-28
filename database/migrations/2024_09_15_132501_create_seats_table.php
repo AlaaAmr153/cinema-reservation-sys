@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
+            $table->string('seat_code');
             $table->boolean('is_booked');
             $table->boolean('under_maintainance')->nullable();
             $table->timestamps();

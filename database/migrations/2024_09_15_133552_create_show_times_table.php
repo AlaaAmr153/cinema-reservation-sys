@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('show_date');
             $table->time('show_time');
-            $table->boolean('available_seats');
+            // $table->boolean('available_seats');
             $table->foreignId('screen_id')->constrained();
             $table->foreignId('movie_id')->constrained();
             $table->timestamps();
