@@ -12,7 +12,7 @@ class MovieGenreController extends Controller
      */
     public function index()
     {
-        //
+        // 
     }
 
     /**

@@ -1,0 +1,105 @@
+.top {
+    height: 25vw;
+    background: url(../../../images/map.jpg) center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+img {
+    height: 180px;
+    width: 240px;
+}
+
+#contact_outer {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+#contact_inner {
+    margin-left: 1.5rem;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+}
+
+#contact_inner p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: black;
+}
+
+#contact_inner a p:hover {
+    color: #ff9d00;
+    text-decoration-line: underline;
+}
+
+.icon::before {
+    content: '';
+    display: inline-block;
+    /* position: absolute; */
+    margin-right: 8px;
+    width: 1.8rem;
+    height: 1.7rem;
+    vertical-align: middle;
+}
+
+#feedback {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+#feedback h1 {
+    margin-top: 4rem;
+}
+
+#feedback input, #feedback textarea {
+    width: calc(100% - 5rem);
+    margin-top: 1.8rem;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+}
+
+#feedback .raised-button {
+    position: relative;
+    overflow: hidden;
+    width: 120px;
+    height: 35px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    background-color: #f1b451;
+    border-style: none;
+    text-transform: uppercase;
+}
+
+#feedback .raised-button::after {
+    content: '';
+    display: block;
+    background: #FFF;
+    opacity: .5;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    bottom: -90%;
+    transition: bottom .2s ease-in;
+    cursor: pointer;
+}
+
+#feedback .raised-button:hover::after {
+    bottom: 0;
+}
+
+#feedback .raised-button:active {
+    transform: translateY(2px);
+}

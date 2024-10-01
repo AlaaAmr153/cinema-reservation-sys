@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cinema;
+use App\Models\Screen;
 use Illuminate\Http\Request;
 
 class CinemaController extends Controller
@@ -28,6 +29,17 @@ class CinemaController extends Controller
     public function create()
     {
         return view('dashboard.cinemas.create');
+    }
+
+
+    public function getScreens($cinemaId)
+    {
+        try {
+            $screens = Screen::where('cinema_id', $cinemaId)->get();
+            return response()->json($screens);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => 'Could not get screens'], 500);
+        }
     }
 
     /**

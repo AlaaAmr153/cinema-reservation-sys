@@ -9,7 +9,7 @@
             <div class="flex items-start justify-start p-12">
                 <div class="w-full max-w-[550px] ">
                     <form method="POST" action="{{ route('showtimes.update', $showtime->id) }}">
-
+                        
                         @method('PATCH')
                         @csrf
 

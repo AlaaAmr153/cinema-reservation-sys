@@ -7,6 +7,7 @@
     <div class="container p-7 w-full ">
         <form action="{{ route('movies.update', ['id' => $movie->id]) }}" method="POST" enctype="multipart/form-data"
             class="p-6 rounded-lg shadow-md ">
+            @method('PATCH')
             @csrf
             <div class="grid grid-rows-3 grid-flow-col gap-4">
                 <div class="mb-4">

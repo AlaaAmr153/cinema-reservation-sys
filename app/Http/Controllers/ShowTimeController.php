@@ -43,22 +43,15 @@ class ShowTimeController extends Controller
 
                 $movies = Movie::all();
                 $cinemas= Cinema::all();
-                $screens =[];
-
-                if ($request->has('cinema_id')) {
-                    // Filter screens based on the selected cinema
-                    $screens = Screen::where('cinema_id', $request->cinema_id)->select('screens.screen_code');
-                    dd($screens);
-                }
                 return view('dashboard.showtime.create')
                 ->with(compact('movies'))
-                ->with(compact('screens'))
                 ->with(compact('cinemas'));
 
         }catch(\Exception $exception){
         return to_route('showtimes.index')->with('message',$exception->getMessage());
         }
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -68,6 +61,7 @@ class ShowTimeController extends Controller
         $request->validate([
             'movie_id'=>'required|exists:movies,id',
             'screen_id'=>'required|exists:screens,id',
+            'cinema_id'=>'required|exists:cinemas,id',
             'date'=>'required',
             'time'=>'required'
         ]);
@@ -75,6 +69,7 @@ class ShowTimeController extends Controller
             ShowTime::create([
                 'movie_id'=>$request->movie_id,
                 'screen_id'=>$request->screen_id,
+                'cinema_id'=>$request->cinema_id,
                 'show_date'=>$request->date,
                 'show_time'=>$request->time,
             ]);
@@ -82,7 +77,7 @@ class ShowTimeController extends Controller
             return to_route('showtimes.index')->with('message','showtime has been created');
 
         }catch(\Exception $exception){
-            return to_route('showtimes.index')->with('message',$exception->getMessage());
+            return to_route('showtimes.create')->with('message',$exception->getMessage());
         }
     }
 
@@ -105,10 +100,12 @@ class ShowTimeController extends Controller
             $cinemas= Cinema::all();
             $screens =[];
 
-            if ($request->has('cinema_id')) {
-                // Filter screens based on the selected cinema
-                $screens = Screen::where('cinema_id', $request->cinema_id)->select('screens.screen_code');
-                dd($screens);}
+            dd($movies);
+
+            // if ($request->has('cinema_id')) {
+            //     // Filter screens based on the selected cinema
+            //     $screens = Screen::where('cinema_id', $request->cinema_id)->select('screens.screen_code');
+            //     dd($screens);}
 
             return view('dashboard.showtime.edit')
             ->with(compact('showtime'))
@@ -160,3 +157,9 @@ class ShowTimeController extends Controller
         }
     }
 }
+
+
+
+//client side functions
+
+

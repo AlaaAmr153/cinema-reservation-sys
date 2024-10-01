@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\CinemaController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieImageController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScreenController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\ShowTimeController;
+use App\Http\Controllers\UserController;
 use App\Models\Seat;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +44,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::patch('update/{id}', 'update')->name('update');
         Route::delete('delete/{id}', 'destroy')->name('destroy');
+        Route::get('/cinemas/{cinemaId}/screens', [CinemaController::class, 'getScreens']);
     });
+
 
     Route::controller(SeatController::class)->prefix('seats')->name('seats.')->group(function () {
         Route::get('/', 'index')->name('index');
@@ -63,14 +68,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('delete/{id}', 'delete')->name('delete');
     });
 
-    Route::controller(SeatController::class)->prefix('seats')->name('seats.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('create', 'create')->name('create');
-        Route::post('store', 'store')->name('store');
-        Route::get('/edit/{id}', 'edit')->name('edit');
-        Route::patch('update/{id}', 'update')->name('update');
-        Route::delete('delete/{id}', 'delete')->name('delete');
-    });
 
 
     Route::controller(CinemaController::class)->prefix('cinemas')->name('cinemas.')->group(function () {
@@ -81,6 +78,9 @@ Route::middleware('auth')->group(function () {
         Route::patch('update/{id}', 'update')->name('update');
         Route::delete('delete/{id}', 'delete')->name('delete');
     });
+    Route::get('/cinemas/{cinemaId}/screens', [CinemaController::class, 'getScreens']);
+
+
 
     Route::controller(ScreenController::class)->prefix('screens')->name('screens.')->group(function () {
         Route::get('/', 'index')->name('index');
@@ -94,23 +94,36 @@ Route::middleware('auth')->group(function () {
     Route::post('/movies/{id}/images', [MovieImageController::class, 'store'])->name('movie_images.store');
     Route::delete('/movie_images/{id}', [MovieImageController::class, 'destroy'])->name('movie_images.destroy');
 
-    Route::controller(CinemaController::class)->prefix('cinemas')->name('cinemas.')->group(function () {
+
+
+
+    Route::controller(PaymentController::class)->prefix('payments')->name('payments.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
-        Route::get('/edit/{id}', 'edit')->name('edit');
-        Route::patch('update/{id}', 'update')->name('update');
-        Route::delete('delete/{id}', 'delete')->name('delete');
     });
 
-    Route::controller(ScreenController::class)->prefix('screens')->name('screens.')->group(function () {
+    Route::controller(UserController::class)->prefix('users')->name('users.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
-        Route::get('/edit/{id}', 'edit')->name('edit');
-        Route::patch('update/{id}', 'update')->name('update');
-        Route::delete('delete/{id}', 'delete')->name('delete');
     });
+
+    Route::controller(FeedbackController::class)->prefix('feedbacks')->name('feedbacks.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+    });
+
+
+// Route::view('/client/home', 'client.home')->name('client.home');
+// Route::view('/client/movies', 'client.movies')->name('client.movies');
+// Route::view('/client/cinemas', 'client.cinemas')->name('client.cinemas');
+// Route::view('/client/contact', 'client.contact')->name('client.contact');
+// Route::view('/client/payment', 'client.payment');
+// Route::view('/client/movie', 'client.movie');
+// Route::view('/client/showtime', 'client.showtime');
+// Route::view('/client/user', 'client.user');
 
 
     // Route::resource('movies',MovieController::class);
