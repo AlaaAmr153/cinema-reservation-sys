@@ -5,9 +5,9 @@
                     class='{{ request()->is('client/home') ? 'active' : '' }}'>home</a></li>
             <li><a href='{{ route('client.cinemas') }}'
                     class='{{ request()->is('client/cinemas') ? 'active' : '' }}'>cinemas</a></li>
-            <li><a href='{{ route('client.movies') }}'
+            <li><a href='{{ route('movies.clientIndex') }}'
                     class='{{ request()->is('client/movies') ? 'active' : '' }}'>movies</a></li>
-            <li><a href='{{ route('client.contact') }}'
+            <li><a href='{{ route('feedbacks.index') }}'
                     class='{{ request()->is('client/contact') ? 'active' : '' }}'>contact</a></li>
         </ul>
     </div>
@@ -25,5 +25,6 @@
             </div>
             <a href='#' class='user-pic'></a>
         </div>
-    </div>
+   </div>
 </nav>
+
