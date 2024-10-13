@@ -198,14 +198,16 @@ class MovieController extends Controller
 
     public function show($id)
     {
+
    $movie = Movie::with('movie_image')->findOrFail($id);
 
-//    dd($movie);
+   if(!empty($movie)){
         return view('client.movie', compact('movie'));
+
+
+        }else{
+            abort(404);
+        }
     }
 }
 
-    //     $movie = Movie::join('movie_images','movies.id','=','movie_images.movie_id')
-    //    ->select('movie_images.img','movies.title')->get();
-
-// dd($movie);
