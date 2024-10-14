@@ -25,10 +25,7 @@
             <div class="movies">
                 @foreach ($movies as $movie)
                 <div class="movie">
-<<<<<<< HEAD
-=======
-                      <a href={{route('client.movie',['id'=>$movie->id]) }}>
->>>>>>> 35f13b632fe29949365ef04935ab0b355525768e
+                    <a href={{route('client.movie',['id'=>$movie->id]) }}>
                     <div class="wrapper" data-id="{{$movie->id}}" data-genre="" data-rating="R">
                         <img src="{{asset($movie->poster)}}" class="loading" alt="{{$movie->title}}">
                     </div>

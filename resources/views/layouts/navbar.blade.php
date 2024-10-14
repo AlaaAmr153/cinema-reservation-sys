@@ -23,7 +23,7 @@
     @endrole
 
     <div class="right-nav">
-        <form class="search-bar" method="GET" action="{{route('search.index')}}">
+        <form class="search-bar" method="GET" action="">
             <input type="text" id="search" name="search"
                 placeholder="Search movies or cinemas" autocomplete="off">
             <button><i icon="search"></i></button>

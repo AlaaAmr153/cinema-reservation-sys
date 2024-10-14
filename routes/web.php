@@ -24,10 +24,6 @@ Route::get('/dashboard', function () {
 
 // 'role:admin'
 
-
-
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -133,24 +129,13 @@ Route::middleware('auth')->group(function () {
 
 
 Route::view('/client/home', 'client.home')->name('client.home');
-<<<<<<< HEAD
-// Route::view('/client/movies', 'client.movies')->name('client.movies');
-// Route::view('/client/cinemas', 'client.cinemas')->name('client.cinemas');
-// Route::view('/client/contact', 'client.contact')->name('client.contact');
-Route::view('/client/payment', 'client.payment');
-Route::view('/client/movie', 'client.movie');
-=======
-Route::view('/client/movies', 'client.movies')->name('client.movies');
-Route::view('/client/cinemas', 'client.cinemas')->name('client.cinemas');
-Route::view('/client/contact', 'client.contact')->name('client.contact');
-Route::view('/client/payment', 'client.payment');
-Route::view('/client/movie', 'client.movie')->name('client.movie');
->>>>>>> 35f13b632fe29949365ef04935ab0b355525768e
-Route::view('/client/showtime', 'client.showtime');
-Route::view('/client/user', 'client.user');
+// Route::view('/client/payment', 'client.payment');
+// Route::view('/client/movie', 'client.movie');
+// Route::view('/client/payment', 'client.payment');
+// Route::view('/client/showtime', 'client.showtime');
+// Route::view('/client/user', 'client.user');
 
 
-<<<<<<< HEAD
     // Route::resource('movies',MovieController::class);
     // Route::resource('showtimes',ShowTimeController::class);
     // Route::resource('seats',SeatController::class);
@@ -164,21 +149,16 @@ Route::view('/client/user', 'client.user');
 
 //movie controller
 Route::get('/client/movies',[MovieController::class,'clientIndex'])->name('movies.clientIndex');
+Route::get('client/movies/{id}', [MovieController::class, 'show'])->name('client.movie');
+
+//cinema route
 Route::get('/client/cinemas',[CinemaController::class,'cinemaindex'])->name('cinemas.cinemaindex');
-Route::get('/search',[SearchController::class,'index'])->name('search.index');
+
+
+// Route::get('/search',[SearchController::class,'index'])->name('search.index');
+
+//showtime route
 Route::get('/client/showtimes',[ShowTimeController::class,'display_showtime'])->name('showtimes.display_showtime');
 
-=======
-    Route::resource('movies',MovieController::class);
-    Route::resource('showtimes',ShowTimeController::class);
-    Route::resource('seats',SeatController::class);
-    Route::resource('cinemas',CinemaController::class);
-    Route::resource('screens',ScreenController::class);
-});
-
-Route::get('/client/movies',[MovieController::class,'clientIndex'])->name('movies.clientIndex');
-
-Route::get('client/movies/{id}', [MovieController::class, 'show'])->name('client.movie');
->>>>>>> 35f13b632fe29949365ef04935ab0b355525768e
 
 require __DIR__ . '/auth.php';

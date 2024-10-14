@@ -188,12 +188,9 @@ class MovieController extends Controller
     public function clientIndex(Request $request)
     {
         $movies = Movie::all();
-<<<<<<< HEAD
-        return view('client.movies', compact('movies'));
-=======
 
         return view('client.movies', compact('movies'));
-  }
+}
 
 
 
@@ -202,16 +199,15 @@ class MovieController extends Controller
     public function show($id)
     {
 
-   $movie = Movie::with('movie_image')->findOrFail($id);
+        $movie = Movie::with('movie_image')->findOrFail($id);
 
-   if(!empty($movie)){
+        if(!empty($movie)){
         return view('client.movie', compact('movie'));
 
 
         }else{
             abort(404);
         }
->>>>>>> 35f13b632fe29949365ef04935ab0b355525768e
     }
 }
 
