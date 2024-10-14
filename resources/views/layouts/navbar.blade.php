@@ -56,5 +56,6 @@
             </div>
             <a href='#' class='user-pic'></a>
         </div>
-    </div>
+   </div>
 </nav>
+

@@ -64,7 +64,7 @@ function clickOverview(button) {
     toggleButton(button);
 
     // fade out
-    document.getElementById('description').style.opacity = 0;
+    document.getElementById('details_text').style.opacity = 0;
 
     // fade in
     setTimeout(function(){
