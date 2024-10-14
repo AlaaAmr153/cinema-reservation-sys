@@ -7,6 +7,7 @@ use App\Http\Controllers\MovieImageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScreenController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\ShowTimeController;
 use App\Http\Controllers\UserController;
@@ -21,11 +22,26 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// 'role:admin'
+
+
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+    Route::controller(UserController::class)->prefix('admins')->name('admins.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::patch('update/{id}', 'update')->name('update');
+        Route::delete('delete/{id}', 'destroy')->name('destroy');
+    });
 
     Route::controller(MovieController::class)->prefix('movies')->name('movies.')->group(function () {
         Route::get('/', 'index')->name('index');
@@ -65,7 +81,7 @@ Route::middleware('auth')->group(function () {
         Route::post('store', 'store')->name('store');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::patch('update/{id}', 'update')->name('update');
-        Route::delete('delete/{id}', 'delete')->name('delete');
+        Route::delete('desttroy/{id}', 'destroy')->name('destroy');
     });
 
 
@@ -78,7 +94,7 @@ Route::middleware('auth')->group(function () {
         Route::patch('update/{id}', 'update')->name('update');
         Route::delete('delete/{id}', 'delete')->name('delete');
     });
-    Route::get('/cinemas/{cinemaId}/screens', [CinemaController::class, 'getScreens']);
+    Route::get('/cinemas/{cinemaId}/screens', action: [CinemaController::class, 'getScreens']);
 
 
 
@@ -116,14 +132,14 @@ Route::middleware('auth')->group(function () {
     });
 
 
-// Route::view('/client/home', 'client.home')->name('client.home');
+Route::view('/client/home', 'client.home')->name('client.home');
 // Route::view('/client/movies', 'client.movies')->name('client.movies');
 // Route::view('/client/cinemas', 'client.cinemas')->name('client.cinemas');
 // Route::view('/client/contact', 'client.contact')->name('client.contact');
-// Route::view('/client/payment', 'client.payment');
-// Route::view('/client/movie', 'client.movie');
-// Route::view('/client/showtime', 'client.showtime');
-// Route::view('/client/user', 'client.user');
+Route::view('/client/payment', 'client.payment');
+Route::view('/client/movie', 'client.movie');
+Route::view('/client/showtime', 'client.showtime');
+Route::view('/client/user', 'client.user');
 
 
     // Route::resource('movies',MovieController::class);
@@ -131,6 +147,17 @@ Route::middleware('auth')->group(function () {
     // Route::resource('seats',SeatController::class);
     // Route::resource('cinemas',CinemaController::class);
     // Route::resource('screens',ScreenController::class);
+
+    Route::resource('users',UserController::class);
+
+
 });
+
+//movie controller
+Route::get('/client/movies',[MovieController::class,'clientIndex'])->name('movies.clientIndex');
+Route::get('/client/cinemas',[CinemaController::class,'cinemaindex'])->name('cinemas.cinemaindex');
+Route::get('/search',[SearchController::class,'index'])->name('search.index');
+Route::get('/client/showtimes',[ShowTimeController::class,'display_showtime'])->name('showtimes.display_showtime');
+
 
 require __DIR__ . '/auth.php';

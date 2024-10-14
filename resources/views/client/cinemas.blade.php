@@ -8,47 +8,22 @@
 
 @section('content')
         <div>
-            <img src="images/cinemas/banner.jpg" id='banner'>
+            <img src="{{ asset('images/site_images/cinemas/banner.jpg') }}" id='banner'>
         </div>
 
         <section>
             <div class='cinemas'>
-                <a href="showtime.html">
-                    <img src="images/cinemas/1.jpg">
+                @foreach ($cinemas as $cinema )
+                <a href="{{ route('showtimes.display_showtime', ['cinema_id' => $cinema->id, 'movie_id' => 1]) }}">
+                    <img src="{{ asset($cinema->cinema_img) }}" alt="Cinema Image">
                     <div>
-                        <h1>
-                            Luna Clementi<i data-icon='dolby'></i> </h1>
-                        <p>3150 Commonwealth Avenue West</p>
-                        <p>68129580</p>
+                        <h1>{{$cinema->cinema_name}}<i data-icon='dolby'></i> </h1>
+                        <p>{{$cinema->location}}</p>
+                        <p>{{$cinema->contact_number}}</p>
                     </div>
                 </a>
-                <a href="showtime.html">
-                    <img src="images/cinemas/2.jpg">
-                    <div>
-                        <h1>
-                            Luna Bedok </h1>
-                        <p>315 New Upper Changi Road</p>
-                        <p>68467347</p>
-                    </div>
-                </a>
-                <a href="showtime.html">
-                    <img src="images/cinemas/3.jpg">
-                    <div>
-                        <h1>
-                            Luna Orchard<i data-icon='imax'></i> </h1>
-                        <p>2 Orchard Turn</p>
-                        <p>68238801</p>
-                    </div>
-                </a>
-                <a href="showtime.html">
-                    <img src="images/cinemas/4.jpg">
-                    <div>
-                        <h1>
-                            Luna Bayfront<i data-icon='imax'></i><i data-icon='dolby'></i> </h1>
-                        <p>10 Bayfront Avenue</p>
-                        <p>68018956</p>
-                    </div>
-                </a>
+                @endforeach
             </div>
         </section>
 @endsection
+

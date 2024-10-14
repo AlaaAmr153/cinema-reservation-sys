@@ -15,6 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @role(['admin','super_admin'])
                     <x-nav-link :href="route('movies.index')" :active="request()->routeIs('movies.*')" >
                         Movies
                     </x-nav-link>
@@ -30,6 +31,16 @@
                     <x-nav-link :href="route('seats.index')" :active="request()->routeIs('seats.*')" >
                         Seats
                     </x-nav-link>
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')" >
+                        Users
+                    </x-nav-link>
+                    @endrole
+
+                    @role('super_admin')
+                    <x-nav-link :href="route('admins.index')" :active="request()->routeIs('admins.*')" >
+                        Admin
+                    </x-nav-link>
+                    @endrole
                 </div>
             </div>
 
@@ -99,6 +110,12 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('seats.index')" :active="request()->routeIs('seats.*')" >
                 Seats
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')" >
+                Users
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admins.index')" :active="request()->routeIs('admins.*')" >
+                Admins
             </x-responsive-nav-link>
         </div>
 

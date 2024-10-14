@@ -16,6 +16,7 @@ class CinemaSeeder extends Seeder
     {
         Cinema::create([
             'cinema_name'=>'Cinema1',
+            'cinema_img'=>'images/site_images/cinemas/1.jpg',
             'location'=>'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
             placeat repellat perspiciatis est debitis expedita voluptas? Ipsam architecto odit autem.',
             'total_screens'=>4,
@@ -23,6 +24,7 @@ class CinemaSeeder extends Seeder
         ]);
         Cinema::create([
             'cinema_name'=>'Cinema2',
+            'cinema_img'=>'images/site_images/cinemas/2.jpg',
             'location'=>'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam placeat
             repellat perspiciatis est debitis expedita voluptas? Ipsam architecto odit autem.',
             'total_screens'=>3,
@@ -30,6 +32,7 @@ class CinemaSeeder extends Seeder
         ]);
         Cinema::create([
             'cinema_name'=>'Cinema3',
+            'cinema_img'=>'images/site_images/cinemas/3.jpg',
             'location'=>'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam placeat
             repellat perspiciatis est debitis expedita voluptas? Ipsam architecto odit autem.',
             'total_screens'=>5,
@@ -37,6 +40,7 @@ class CinemaSeeder extends Seeder
         ]);
         Cinema::create([
             'cinema_name'=>'Cinema4',
+            'cinema_img'=>'images/site_images/cinemas/4.jpg',
             'location'=>'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam placeat
             repellat perspiciatis est debitis expedita voluptas? Ipsam architecto odit autem.',
             'total_screens'=>4,

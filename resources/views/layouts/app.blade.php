@@ -38,7 +38,8 @@
             </main>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/alpinejs"></script>
-        <script src="{{ asset('js/dashboard/showtime.js') }}"></script>
+        <script type="module" src="{{ asset('js/dashboard/showtime.js') }}"></script>
         <script src="{{ asset('js/dashboard/relatedscreen.js') }}"></script>
+        @stack('script')
     </body>
 </html>

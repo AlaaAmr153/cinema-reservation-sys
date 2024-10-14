@@ -1,5 +1,5 @@
 function getScreens(cinemaId) {
-    //to fetch related screens
+    //to get the related screens
     if (cinemaId) {
         fetch(`/cinemas/${cinemaId}/screens`)
             .then(response => response.json())
@@ -11,5 +11,8 @@ function getScreens(cinemaId) {
                 });
             })
             .catch(error => console.error('Error fetching screens:', error));
+    }else {
+        //if there is no cinema selected so it will be clear
+        document.getElementById('screen_id').innerHTML = '<option value="">Select Screen</option>';
     }
 }

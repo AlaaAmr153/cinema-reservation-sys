@@ -182,4 +182,13 @@ class MovieController extends Controller
         $movie = Movie::findOrFail($id);
         return view('dashboard.movies.images', compact('movie'));
     }
+
+
+//client side
+    public function clientIndex(Request $request)
+    {
+        $movies = Movie::all();
+        return view('client.movies', compact('movies'));
+    }
 }
+

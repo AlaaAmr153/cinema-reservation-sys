@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cinema;
+use App\Models\Movie;
 use App\Models\Screen;
+use App\Models\ShowTime;
 use Illuminate\Http\Request;
 
 class CinemaController extends Controller
@@ -73,9 +75,9 @@ class CinemaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cinema $cinema)
+    public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -119,4 +121,15 @@ class CinemaController extends Controller
         // $cinema->delete();
         return to_route('cinemas.index')->with('message','Cinema has been deleted');
     }
+
+
+    public function cinemaindex(Request $request){
+
+        $cinemas = Cinema::with('screen.showtime')->get();
+        return view('client.cinemas', compact('cinemas'));
+    }
+
+
 }
+
+

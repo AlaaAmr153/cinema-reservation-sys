@@ -1,6 +1,7 @@
 .top {
     height: 25vw;
-    background: url(../../../images/map.jpg) center / cover no-repeat;
+    /* background: url('../../site_images/builing.jpg') center / cover no-repeat; */
+    background-color: wheat;
     display: flex;
     align-items: center;
     justify-content: center;

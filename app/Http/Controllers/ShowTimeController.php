@@ -92,25 +92,16 @@ class ShowTimeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id,Request $request)
+    public function edit(string $id)
     {
         try{
             $showtime = ShowTime::findOrFail($id);
             $movies = Movie::all();
             $cinemas= Cinema::all();
-            $screens =[];
-
-            dd($movies);
-
-            // if ($request->has('cinema_id')) {
-            //     // Filter screens based on the selected cinema
-            //     $screens = Screen::where('cinema_id', $request->cinema_id)->select('screens.screen_code');
-            //     dd($screens);}
 
             return view('dashboard.showtime.edit')
             ->with(compact('showtime'))
             ->with(compact('movies'))
-            ->with(compact('screens'))
             ->with(compact('cinemas'));
 
         }catch(\Exception $exception){
@@ -126,20 +117,23 @@ class ShowTimeController extends Controller
         $request->validate([
             'movie_id'=>'required|exists:movies,id',
             'screen_id'=>'required|exists:screens,id',
+            'cinema_id' => 'required|exists:cinemas,id',
             'date'=>'required',
-            'time'=>'required']);
+            'time'=>'required'
+        ]);
         try{
             $showtime = ShowTime::findOrFail($id);
             $showtime->update([
                 'movie_id'=>$request->movie_id,
                 'screen_id'=>$request->screen_id,
+                'cinema_id' => $request->cinema_id,
                 'show_date'=>$request->date,
                 'show_time'=>$request->time,
             ]);
 ;
             return to_route('showtimes.index')->with('message','showtime has been updated');
         }catch(\Exception $exception){
-            return to_route('showtimes.index')->with('message',$exception->getMessage());
+            return to_route('showtimes.edit')->with('message',$exception->getMessage());
         }
     }
 
@@ -156,10 +150,60 @@ class ShowTimeController extends Controller
             return to_route('showtimes.index')->with('message',$exception->getMessage());
         }
     }
+
+
+    //client side functions
+
+    // public function display_showtime(Request $request){
+
+    //     $selectedCinemaId = $request->input('cinema_id');
+    //     $selectedMovieId = $request->input('movie_id', 1);
+
+    //     $cinemas = Cinema::with(['screen.showtime'])->get();
+
+    //     $selectedCinema = Cinema::with(['screen.showtime' => function ($query) use ($selectedMovieId) {
+    //         $query->where('movie_id', $selectedMovieId);
+    //     }])->findOrFail($selectedCinemaId);
+
+    //     $selectedMovie = Movie::findOrFail($selectedMovieId);
+    //     $movies = Movie::all();
+
+    //     return view('client.showtime', compact('cinemas', 'selectedCinema', 'selectedMovie', 'selectedMovieId','movies'));
+
+    // }
+
+
+    public function display_showtime(Request $request)
+{
+    $selectedCinemaId = $request->input('cinema_id');
+    $selectedMovieId = $request->input('movie_id', 1);
+
+    // fetch cinemas and their related screens and showtimes
+    $cinemas = Cinema::with(['screen.showtime'])->get();  //cinema doesnt have a direct relation with the showtime
+
+    // fetch the selected cinema and its related data
+    $selectedCinema = $selectedCinemaId ? Cinema::with(['screen.showtime' => function ($query) use ($selectedMovieId) {
+        $query->where('movie_id', $selectedMovieId); // only get showtimes for the selected movie
+    }])->findOrFail($selectedCinemaId) : null;
+
+    // get movies that have showtimes for the selected cinema
+    // $movies = ShowTime::whereHas('movie', function($query) use ($selectedCinemaId) {
+    //     $query->whereIn('screen_id', function($subQuery) use ($selectedCinemaId) {
+    //         $subQuery->select('id')->from('screens')->where('cinema_id', $selectedCinemaId);
+    //     });
+    // })->get();
+
+    $movies = Movie::all();
+
+    $selectedMovie = $selectedMovieId ? Movie::findOrFail($selectedMovieId) : null;
+
+    return view('client.showtime', compact('cinemas', 'selectedCinema', 'selectedMovie', 'selectedMovieId', 'movies'));
+}
+
 }
 
 
 
-//client side functions
+
 
 
