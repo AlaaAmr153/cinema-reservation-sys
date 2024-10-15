@@ -8,6 +8,7 @@
       width: 100%;
       background: #FFF;
       display: block;
+      font-size: 18px;
       position: relative;
       line-height: 2rem;
       height: 2rem;
@@ -147,15 +148,24 @@
       width: 100%;
       display: flex;
       flex-wrap: nowrap;
-      background: #999; }
+      background: #999;
+      transform: translateX(0%);
+      transition: transform 0.5s ease}
+      .slideshow  a {
+        flex: 0 0 100%; /* Each slide takes up 100% width */
+        display: block;
+        z-index: 1; /* Ensure links are above other elements */
+        position: relative;
+    }
     .slideshow img {
       max-width: 100%;
       object-fit: cover;
+      display: block;
       transition: opacity .3s ease; }
-    .slideshow img[data-src] {
-      opacity: 0; }
-    .slideshow img:not([data-src]) {
-      opacity: 1; }
+    /* .slideshow img[data-src] {
+      opacity: 0; } */
+    /* .slideshow img:not([data-src]) {
+      opacity: 1; } */
     .slideshow ul {
       position: absolute;
       bottom: 1.5rem;
@@ -255,7 +265,8 @@
     z-index: 10; }
     .slider .container {
       display: flex;
-      flex-wrap: nowrap; }
+      flex-wrap: nowrap;
+      transition: transform 0.5s ease; }
     .slider .movie {
       flex: 0 0 15%;
       margin: 0 2.5%;
@@ -301,7 +312,8 @@
     display: flex;
     justify-content: space-between;
     top: calc(50% - 1rem + 2rem);
-    left: 0; }
+    left: 0;
+    transform: translateY(-50%)}
     .controls button {
       background: transparent;
       color: #CCC;
@@ -314,3 +326,9 @@
         color: #f1b451; }
       .controls button:active {
         transform: scale(1.2); }
+
+
+        .error{
+            color: rgb(156, 1, 1);
+            text-align: center;
+        }
