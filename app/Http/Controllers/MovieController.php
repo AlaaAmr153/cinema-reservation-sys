@@ -8,7 +8,7 @@ use App\Models\MovieGenre;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Movie;
 use Illuminate\Http\Request;
-
+use function Laravel\Prompts\select;
 class MovieController extends Controller
 {
     /**
@@ -50,7 +50,7 @@ class MovieController extends Controller
             'image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'genre_id' => 'required|exists:movie_genres,id',
         ]);
-        $poster_name = time() . "_poster_" . $request->file('poster')->getClientOriginalName();
+        $poster_name = time() . "poster" . $request->file('poster')->getClientOriginalName();
         $path_poster = Storage::disk('public')->putFileAs('images/moviesposter', $request->poster, $poster_name);
         $movie = new Movie();
         $movie->title = $request->title;
@@ -65,7 +65,7 @@ class MovieController extends Controller
         $movie->poster   = $path_poster;
         $movie->save();
         foreach ($request->image as $img) {
-            $img_name = time() . "_image_" . $img->getClientOriginalName();
+            $img_name = time() . "image" . $img->getClientOriginalName();
             $path_img = Storage::disk('public')->putFileAs('images/moviesimages', $img, $img_name);
             $movie->movie_image()->create(['img' => $path_img]);
         }
@@ -115,7 +115,7 @@ class MovieController extends Controller
                     }
                 }
             }
-            $poster_name = time() . "_poster_" . $request->file('poster')->getClientOriginalName();
+            $poster_name = time() . "poster" . $request->file('poster')->getClientOriginalName();
             $path_poster = Storage::disk('public')->putFileAs('images/moviesposter', $request->poster, $poster_name);
             $movie->poster = $path_poster;
         }
@@ -133,7 +133,7 @@ class MovieController extends Controller
         $movie->save();
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $img) {
-                $img_name = time() . "_image_" . $img->getClientOriginalName();
+                $img_name = time() . "image" . $img->getClientOriginalName();
                 $path_img = Storage::disk('public')->putFileAs('images/moviesimages', $img, $img_name);
                 $movie->movie_image()->create(['img' => $path_img]);
             }
@@ -182,4 +182,32 @@ class MovieController extends Controller
         $movie = Movie::findOrFail($id);
         return view('dashboard.movies.images', compact('movie'));
     }
+
+
+//client side
+    public function clientIndex(Request $request)
+    {
+        $movies = Movie::all();
+
+        return view('client.movies', compact('movies'));
 }
+
+
+
+
+
+    public function show($id)
+    {
+
+        $movie = Movie::with('movie_image')->findOrFail($id);
+
+        if(!empty($movie)){
+        return view('client.movie', compact('movie'));
+
+
+        }else{
+            abort(404);
+        }
+    }
+}
+

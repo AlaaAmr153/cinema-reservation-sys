@@ -6,10 +6,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
@@ -53,6 +54,9 @@ class User extends Authenticatable
     }
     public function reservation(){
         return $this->hasMany(Reservation::class,'user_id','id');
+    }
+    public function feedback(){
+        return $this->hasMany(Feedback::class);
     }
 
 }

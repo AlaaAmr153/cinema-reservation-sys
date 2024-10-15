@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Feedback;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class FeedbackController extends Controller
 {
@@ -12,7 +14,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        return view('client.contact');
     }
 
     /**
@@ -28,7 +30,27 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        {
+            $request->validate([
+                'name'=>'required|string',
+                'email'=>'required|email',
+                'feedback'=>'required|string',
+            ]);
+            try{
+                Feedback::create([
+                    'name'=>$request->name,
+                    'email'=>$request->email,
+                    'feedback'=>$request->feedback,
+                    'user_id' => Auth::id(),
+                ]);
+
+                return redirect()->back()->with('success', 'Thank you for your feedback');
+
+            }catch(\Exception $e){
+                Log::error($e->getMessage());
+                return redirect()->back()->withErrors(['error' => 'Something went wrong. Please try again.']);
+            }
+        }
     }
 
     /**

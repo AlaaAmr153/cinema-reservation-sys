@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Cinemas
+            Showtime
         </h2>
     </x-slot>
 
@@ -30,7 +30,7 @@
                     @endif
                 </div>
 
-                <form class="sm:px-6 lg:px-8" method="get" action="{{ route('cinemas.index') }}">
+                <form class="sm:px-6 lg:px-8" method="get" action="{{ route('users.index') }}">
                     <div>
                         <x-input-label>Search</x-input-label>
                         <x-text-input name="search"></x-text-input>
@@ -40,8 +40,8 @@
 
                 <div class="flex justify-end m-3">
                     <x-button-link>
-                        Add New Cinema
-                        <x-slot name="href">{{ route('cinemas.create') }}</x-slot>
+                        Add New User
+                        <x-slot name="href">{{ route('users.create') }}</x-slot>
                     </x-button-link>
                 </div>
 
@@ -57,26 +57,21 @@
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                                 #
                                             </th>
-
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Cinema Image
+                                                Name
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Cinema Name
-                                            </th>
-                                            <th scope="col"
-                                                class="text-sm font-medium text-gray-900 px-1 py-4 text-center ">
-                                                Location
+                                                Email
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Total Screens
+                                                phone Number
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                                Contact Number
+                                                Password
                                             </th>
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
@@ -85,52 +80,57 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($cinemas as $key => $cinema)
+
+                                        @forelse ($users as $key=> $user)
                                             <tr
                                                 class="bg-white border-b text-center transition duration-300 ease-in-out hover:bg-gray-100">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
-                                                    {{ $cinemas->firstItem() + $key }}
+                                                    {{ $users->firstItem() + $key }}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    <img src="{{ asset($cinema->cinema_img) }}" alt="cinema"
-                                                        class="w-20 h-auto">
+                                                    {{ $user->name}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    {{ $cinema->cinema_name }}
+                                                    {{ $user->email}}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    {{ $cinema->location }}
+                                                    {{ $user->phone_number ? $user->phone_number : '' }}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    {{ $cinema->total_screens }}
-                                                </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    {{ $cinema->contact_number }}
+                                                    {{ $showtime->screen && $showtime->screen->cinema ? $showtime->screen->cinema->cinema_name : '' }}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     <div class="flex justify-evenly">
                                                         <div>
-                                                            <a href="{{ route('cinemas.edit', $cinema->id) }}">
+                                                            <a href="{{ route('showtimes.edit', $showtime->id) }}">
                                                                 <i class="fa-solid fa-pen-to-square text-lg"></i></a>
                                                         </div>
                                                         <div>
-                                                            <form method="POST"
-                                                                action="{{ route('cinemas.delete', $cinema->id) }}">
+                                                            <form method="post"
+                                                                action="{{ route('showtimes.destroy', $showtime->id) }}">
                                                                 @method('DELETE')
                                                                 @csrf
-                                                                <button type="submit">
-                                                                    {{-- <a href="{{route('cinemas.delete',$cinema->id)}}"> --}}
-                                                                    <i class="fa-solid fa-trash text-lg"
+                                                                <button type="submit"><i
+                                                                        class="fa-solid fa-trash text-lg"
                                                                         style="color: #ff0000;"></i>
                                                                 </button>
                                                             </form>
                                                         </div>
+
                                                 </td>
-                                        @endforeach
-                                        </tr>
+                                            </tr>
+                                        @empty
+                                            <tr
+                                                class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                                <td colspan="4"
+                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                    No Showtimes Yet
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
-                                <div class="mt-2">{{ $cinemas->links() }}</div>
+                                <div class="mt-2">{{ $showtimes->links() }}</div>
                             </div>
                         </div>
                     </div>

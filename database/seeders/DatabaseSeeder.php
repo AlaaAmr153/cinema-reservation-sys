@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
            MovieSeeder::class,
            CinemaSeeder::class,
            ScreenSeeder::class,
+           ShowTimeSeeder::class,
+           RoleSeeder::class,
+           AdminSeeder::class
         //    MovieImage::class
         ]);
     }
