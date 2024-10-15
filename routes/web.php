@@ -10,6 +10,8 @@ use App\Http\Controllers\ScreenController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\ShowTimeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClientHomeController;
+use App\Http\Controllers\MovieInfoController;
 use App\Models\Seat;
 use Illuminate\Support\Facades\Route;
 
@@ -116,14 +118,31 @@ Route::middleware('auth')->group(function () {
     });
 
 
+
+
+
+    Route::get('/client/home', [ClientHomeController::class, 'index'])->name('client.home');
+    Route::post('/client/home/showtimes', [ClientHomeController::class, 'getShowtimes'])->name('client.showtime');
+    Route::post('/client/home/booking', [ClientHomeController::class, 'bookShowtime'])->name('client.book');;
+    Route::get('/client/home/movie/{id}', [ClientHomeController::class, 'show'])->name('movieinfo.show');
+    // Route::get('/movies/{movie}/showtimes', [ClientHomeController::class, 'getShowtimes']);
+    // Route::get('/client/home/{cinemaId}/movies', [CinemaController::class, 'getMovies']);
+    // Route::get('/client/home/{cinemaId}/movies/{movieId}/showtimes', [CinemaController::class, 'getShowtimes']);
+
+    // Route::get('/client/home/movie',[MovieInfoController::class,'index'])->name('client.index');
+    // Route::get('/client/home/movie/{id}',[MovieInfoController::class,'show'])->name('movieinfo.show');
+
+
+
+
 // Route::view('/client/home', 'client.home')->name('client.home');
-// Route::view('/client/movies', 'client.movies')->name('client.movies');
-// Route::view('/client/cinemas', 'client.cinemas')->name('client.cinemas');
-// Route::view('/client/contact', 'client.contact')->name('client.contact');
-// Route::view('/client/payment', 'client.payment');
+Route::view('/client/movies', 'client.movies')->name('client.movies');
+Route::view('/client/cinemas', 'client.cinemas')->name('client.cinemas');
+Route::view('/client/contact', 'client.contact')->name('client.contact');
+Route::view('/client/payment', 'client.payment');
 // Route::view('/client/movie', 'client.movie');
-// Route::view('/client/showtime', 'client.showtime');
-// Route::view('/client/user', 'client.user');
+Route::view('/client/showtime', 'client.showtime');
+Route::view('/client/user', 'client.user');
 
 
     // Route::resource('movies',MovieController::class);
