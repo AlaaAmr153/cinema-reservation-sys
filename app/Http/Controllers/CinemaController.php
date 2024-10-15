@@ -7,6 +7,7 @@ use App\Models\Movie;
 use App\Models\Screen;
 use App\Models\ShowTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CinemaController extends Controller
 {
@@ -53,6 +54,7 @@ class CinemaController extends Controller
         // dd($request->all());
         $request->validate([
             "new_cinema"=>'required|string|max:100',
+            'cinema_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             "location"=>'required|string',
             "num_screen"=>'required',
             "phone"=>'required|max:11',
@@ -63,12 +65,16 @@ class CinemaController extends Controller
             'num_screen'=>"Number of screen is required",
             'phone'=>"Max Number is 11",
         ]);
+        $img_name = time() . "cinema_img" . $request->file('cinema_img')->getClientOriginalName();
+        $img_path = Storage::disk('public')->putFileAs('images/site_images/cinemas', $request->cinema_img, $img_name);
         $cinema = new Cinema();
         $cinema->cinema_name = $request->new_cinema ;
         $cinema->location = $request->location;
         $cinema->total_screens = $request->num_screen;
         $cinema->contact_number = $request->phone;
+        $cinema->cinema_img = $img_path;
         $cinema->save();
+
         return to_route('cinemas.index')->with('message','Cinema has been Added');
     }
 
@@ -77,7 +83,7 @@ class CinemaController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -98,13 +104,31 @@ class CinemaController extends Controller
         $request->validate([
             "new_cinema"=>'required|string|max:100',
             "location"=>'required|string',
+            'cinema_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             "num_screen"=>'required',
             "phone"=>'required|max:11',
         ]);
         $cinema=Cinema::find($id);
+
+        if ($request->hasFile('cinema_img')) {
+            if ($cinema->cinema_img) {
+                if (Storage::disk('public')->exists($cinema->cinema_img)) {
+                    Storage::disk('public')->delete($cinema->cinema_img);
+                } else {
+                    if (file_exists(public_path($cinema->cinema_img))) {
+                        unlink(public_path($cinema->cinema_img));
+                    }
+                }
+            }
+            $img_name = time() . "cinema_img" . $request->file('cinema_img')->getClientOriginalName();
+            $img_path = Storage::disk('public')->putFileAs('images/site_images/cinemas', $request->cinema_img, $img_name);
+            $cinema->cinema_img = $img_path;
+        }
+
         $cinema->update([
             'cinema_name'=> $request->new_cinema,
             'location'=> $request->location,
+            'cinema_img'=> $request->cinema_img,
             'total_screens'=> $request->num_screen,
             'contact_number'=> $request->phone,
         ]);

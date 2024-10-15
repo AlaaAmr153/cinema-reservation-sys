@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Showtime
+            Update Showtime
         </h2>
     </x-slot>
     <div class="max-w-full mx-auto sm:px-3 lg:px-4 mt-6 ">

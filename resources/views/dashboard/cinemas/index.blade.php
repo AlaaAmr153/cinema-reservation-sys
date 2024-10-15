@@ -12,7 +12,7 @@
 
                     @if (session()->has('message'))
                         <div
-                            class="flex justify-left items-center m-1 font-medium py-1 px-2 bg-white rounded-md text-green-100 bg-green-700 border border-green-700 ">
+                            class="flex justify-left items-center m-1 font-medium py-1 px-2 bg-white rounded-md text-green-100 bg-green-800 border border-green-700 ">
                             <div slot="avatar">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -30,12 +30,12 @@
                     @endif
                 </div>
 
-                <form class="sm:px-6 lg:px-8" method="get" action="{{ route('cinemas.index') }}">
+                {{-- <form class="sm:px-6 lg:px-8" method="get" action="{{ route('cinemas.index') }}">
                     <div>
                         <x-input-label>Search</x-input-label>
                         <x-text-input name="search"></x-text-input>
                     </div>
-                </form>
+                </form> --}}
 
 
                 <div class="flex justify-end m-3">
@@ -85,7 +85,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($cinemas as $key => $cinema)
+                                        @forelse ($cinemas as $key => $cinema)
                                             <tr
                                                 class="bg-white border-b text-center transition duration-300 ease-in-out hover:bg-gray-100">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
@@ -98,8 +98,16 @@
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     {{ $cinema->cinema_name }}
                                                 </td>
-                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                                    {{ $cinema->location }}
+                                                <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap"
+                                                x-data="{ open: false }">
+                                                <button @click="open=true" class="text-blue-500">View
+                                                    Location</button>
+                                                <div x-show="open">
+                                                    <div class="bg-white p-6 rounded shadow-lg relative">
+                                                        <p class="text-gray-900" id="location">
+                                                            {!! nl2br(str_replace(',', ',<br>',  $cinema->location  )) !!}</p>
+                                                        <button @click="open = false"
+                                                            class="absolute top-4 right-4 text-gray-600">X</button>
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                                     {{ $cinema->total_screens }}
@@ -126,8 +134,16 @@
                                                             </form>
                                                         </div>
                                                 </td>
-                                        @endforeach
                                         </tr>
+                                        @empty
+                                        <tr
+                                            class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                            <td colspan="4"
+                                                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                No Cinemas Yet
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                     </tbody>
                                 </table>
                                 <div class="mt-2">{{ $cinemas->links() }}</div>
