@@ -116,14 +116,14 @@ Route::middleware('auth')->group(function () {
     });
 
 
-// Route::view('/client/home', 'client.home')->name('client.home');
-// Route::view('/client/movies', 'client.movies')->name('client.movies');
-// Route::view('/client/cinemas', 'client.cinemas')->name('client.cinemas');
-// Route::view('/client/contact', 'client.contact')->name('client.contact');
-// Route::view('/client/payment', 'client.payment');
-// Route::view('/client/movie', 'client.movie');
-// Route::view('/client/showtime', 'client.showtime');
-// Route::view('/client/user', 'client.user');
+Route::view('/client/home', 'client.home')->name('client.home');
+Route::view('/client/movies', 'client.movies')->name('client.movies');
+Route::view('/client/cinemas', 'client.cinemas')->name('client.cinemas');
+Route::view('/client/contact', 'client.contact')->name('client.contact');
+Route::view('/client/payment', 'client.payment');
+Route::view('/client/movie', 'client.movie');
+Route::view('/client/showtime', 'client.showtime');
+Route::view('/client/user', 'client.user')->name('client.user');
 
 
     // Route::resource('movies',MovieController::class);

@@ -27,6 +27,6 @@ class Reservation extends Model
         return $this->hasOne(Payment::class);
     }
     public function showtime(){
-        return $this->belongsTo(ShowTime::class);
+        return $this->belongsTo(ShowTime::class, 'show_time_id');
     }
 }
