@@ -69,5 +69,4 @@
 
 @push('script')
     <script type='application/javascript' src='{{ asset('js/client/javascript/pages/showtime.js') }}'></script>
-
 @endpush
