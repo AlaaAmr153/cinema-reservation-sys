@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Movie;
+use App\Models\MovieGenre;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -31,6 +32,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/bagman2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/bagman3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/bagman4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Horror', 'Thriller'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = 'Damsel';
@@ -57,6 +60,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/damsel2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/damsel3.png']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/damsel4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Fantasy', 'Adventure', 'Drama'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = 'Deadpool & Wolverine';
@@ -83,6 +88,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/deadpool2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/deadpool3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/deadpool4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Action', 'Comedy', 'Superhero', 'Science Fiction'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = 'Despicable Me4';
@@ -103,6 +110,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/despicable2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/despicable3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/despicable4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Animation', 'Comedy', 'Adventure'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = 'Evil Dead Rise';
@@ -128,6 +137,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/evil2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/evil3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/evil4.png']);
+        $genres = MovieGenre::whereIn('genre', ['Horror', 'Thriller', 'Fantasy'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
 
         $movie = new Movie();
@@ -153,6 +164,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/getout2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/getout3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/getout4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Horror', 'Thriller', 'Mystery'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = 'Harry Potter And The Deathly Hallows';
@@ -188,6 +201,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/harry2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/harry3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/harry4.jpeg']);
+        $genres = MovieGenre::whereIn('genre', ['Fantasy', 'Adventure', 'Drama'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = "Howl's Moving Castle";
@@ -212,6 +227,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/howl2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/howl3.jpeg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/howl4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Animation', 'Fantasy', 'Adventure'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = 'IF';
@@ -234,6 +251,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/if2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/if3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/if4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Drama', 'Fantasy'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = 'Dolittle';
@@ -259,6 +278,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/dolittle2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/dolittle3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/dolittle4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Adventure', 'Comedy', 'Fantasy'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
 
         $movie = new Movie();
@@ -286,6 +307,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/doctor2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/doctor3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/doctor4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Action', 'Adventure', 'Fantasy', 'Superhero'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = 'Puss In Boots';
@@ -311,6 +334,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/puss2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/puss3.jpeg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/puss4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Animation', 'Adventure', 'Comedy'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = 'Speak No Evil';
@@ -334,6 +359,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/speak2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/speak3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/speak4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Horror', 'Thriller'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = 'Spirited Away';
@@ -358,6 +385,8 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/spirited2.png']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/spirited3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/spirited4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Animation', 'Fantasy', 'Adventure'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
 
         $movie = new Movie();
         $movie->title = 'The Maze Runner';
@@ -383,5 +412,7 @@ class MovieSeeder extends Seeder
         $movie->movie_image()->create(['img' => 'images/moviesimages/maze2.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/maze3.jpg']);
         $movie->movie_image()->create(['img' => 'images/moviesimages/maze4.jpg']);
+        $genres = MovieGenre::whereIn('genre', ['Science Fiction', 'Action', 'Adventure'])->pluck('id')->toArray();
+        $movie->moviegenre()->sync($genres);
     }
 }
