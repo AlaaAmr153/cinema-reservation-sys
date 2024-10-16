@@ -18,8 +18,8 @@
                     <img src="{{ asset($cinema->cinema_img) }}" alt="Cinema Image">
                     <div>
                         <h1>{{$cinema->cinema_name}}<i data-icon='dolby'></i> </h1>
-                        <p>{{$cinema->location}}</p>
-                        <p>{{$cinema->contact_number}}</p>
+                        {{-- <p>{{$cinema->location}}</p> --}}
+                        <p>Contact Number : {{$cinema->contact_number}}</p>
                     </div>
                 </a>
                 @endforeach

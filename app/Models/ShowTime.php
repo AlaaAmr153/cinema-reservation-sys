@@ -18,4 +18,8 @@ public function screen(){
 public function reservation(){
     return $this->hasMany(Reservation::class);
 }
+
+public function seats(){
+    return $this->hasMany(Seat::class);
+}
 }

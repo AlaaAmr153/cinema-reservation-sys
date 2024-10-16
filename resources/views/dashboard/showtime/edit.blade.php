@@ -14,11 +14,11 @@
                         @csrf
 
 
-                        <input type="hidden" name="movie_id" id="movie_id"
-                            value="{{ old('movie_id', $showtime->movie_id) }}">
+                        {{-- <input type="hidden" name="movie_id" id="movie_id"
+                            value="{{ old('movie_id', $showtime->movie_id) }}"> --}}
                         <div class="mb-5">
                             <x-input-label>Choose Movie</x-input-label>
-                            <div class="relative rounded-md border border-[#e0e0e0] font-medium text-[#6B7280]">
+                            {{-- <div class="relative rounded-md border border-[#e0e0e0] font-medium text-[#6B7280]">
                                 <div class="selectbox-header" id="selectboxHeader">
                                     <img id="selectedImage" src="{{ asset($showtime->movie->poster) }}"
                                         alt="Selected Image" class="selectbox-img">
@@ -35,7 +35,16 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                            </div>
+                            </div> --}}
+                            <select id="movie_id" name="movie_id"
+                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-black focus:shadow-md mb-3">
+                            <option value="{}">Select movie</option>
+                            @foreach ($movies as $movie)
+                                <option value="{{ $movie->id }}"
+                                    {{ $showtime->movie_id  == $movie->id ? 'selected' : '' }}>
+                                    {{ $movie->title }}</option>
+                            @endforeach
+                        </select>
 
                             @error('movie')
                                 <p class="text-red-600 font-bold">{{ $message }}</p>

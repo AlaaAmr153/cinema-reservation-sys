@@ -14,7 +14,7 @@
             <figure>
             @foreach($moviesInfo as $movie)
 
-                <a href="{{ route('movieinfo.show', ['id' => $movie->id]) }}">
+                <a href="{{ route('client.movie', ['id' => $movie->id]) }}">
                     <img src="{{ asset($movie->poster) }}" alt="{{ $movie->title }}" style="width:100%;">
                 </a>
 
@@ -37,6 +37,10 @@
 
         <form id="quickBuy" method="POST" action="{{route('client.book')}} ">
         @csrf
+
+        <input type="hidden" name="cinema" id="selected_cinema">
+        <input type="hidden" name="movie" id="selected_movie">
+        <input type="hidden" name="showtime" id="selected_showtime">
 
         <div class="select-hover">
             <!-- <label for="cinemas" class="select" data-icon-before="location"><span>Choose Cinema</span></label> -->
@@ -99,10 +103,8 @@
             <div class="container" id="movieContainer">
             @foreach($moviesInfo2 as $movie)
                 <div class="movie" data-id="1">
-
                     <img src="{{ asset($movie->poster) }}" alt="{{ $movie->title }}">
-
-                <a href="{{ route('movieinfo.show', ['id' => $movie->id]) }}">
+                <a href="{{ route('client.movie', ['id' => $movie->id]) }}">
                     <div class="info">
                         <span>{{ $movie->title }}</span>
                         <span>Drama</span>
@@ -126,41 +128,80 @@
     <script  src='{{ asset('js/client/javascript/pages/home.js') }}'></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
     <script>
-        $(document).ready(function () {
+//         $(document).ready(function () {
+//             $('#movie').on('change', function () {
+//             var movie_id = this.value;
+//             $("#showtime").html('');
+//             $.ajax({
+//                 url: "{{route('client.showtime')}}",
+//                 type: "POST",
+//                 data: {
+//                     movie_id: movie_id,
+//                     _token: '{{csrf_token()}}'
+//                 },
+//                 dataType: 'json',
+//                 success: function (result) {
+//                     $('#showtime').html('<option value="">Choose Time</option>');
+//                     $.each(result.showtime, function (key, value) {
+//                         var showDate = new Date(value.show_date);
+//                         var options = { weekday: 'short', day: 'numeric', month: 'short' };
+//                         var formattedDate = showDate.toLocaleDateString('en-GB', options);
+//                         var time = value.show_time.split(':');
+//                         var hours = parseInt(time[0]);
+//                         var minutes = time[1];
+//                         var ampm = hours >= 12 ? 'PM' : 'AM';
+//                         hours = hours % 12;
+//                         hours = hours ? hours : 12;
+//                         var formattedTime = hours + ':' + minutes + ' ' + ampm;
+//                         var showDateTime = formattedDate + ' ' + formattedTime;
+//                         $("#showtime").append('<option value="' + value.id + '">' + showDateTime + '</option>');
+//                     });
 
-            $('#movie').on('change', function () {
+//             // Set the hidden form fields
+//             $('#selected_cinema').val($('#cinema').val());
+//             $('#selected_movie').val($('#movie').val());
+//             $('#selected_showtime').val($('#showtime').val());
 
-            var movie_id = this.value;
+//                 }
 
-            $("#showtime").html('');
+//             });
+//             });
 
+//             // When showtime is selected
+//     $('#showtime').on('change', function () {
+//     $('#selected_showtime').val(this.value);
+// });
+//             });
+
+$(document).ready(function () {
+    $('#cinema, #movie').on('change', function () {
+        // Update the hidden input fields
+        $('#selected_cinema').val($('#cinema').val());
+        $('#selected_movie').val($('#movie').val());
+
+        // Clear previous showtimes
+        $("#showtime").html('<option value="">Choose Time</option>');
+
+        if ($('#movie').val()) {
+            var movie_id = $('#movie').val();
+
+            // Fetch new showtimes for selected movie
             $.ajax({
-
-                url: "{{route('client.showtime')}}",
-
+                url: "{{ route('client.showtime') }}",
                 type: "POST",
-
                 data: {
-
                     movie_id: movie_id,
-
-                    _token: '{{csrf_token()}}'
-
+                    _token: '{{ csrf_token() }}'
                 },
-
                 dataType: 'json',
-
                 success: function (result) {
-
-                    $('#showtime').html('<option value="">Choose Time</option>');
-
                     $.each(result.showtime, function (key, value) {
-
                         var showDate = new Date(value.show_date);
                         var options = { weekday: 'short', day: 'numeric', month: 'short' };
                         var formattedDate = showDate.toLocaleDateString('en-GB', options);
-
 
                         var time = value.show_time.split(':');
                         var hours = parseInt(time[0]);
@@ -170,19 +211,20 @@
                         hours = hours ? hours : 12;
                         var formattedTime = hours + ':' + minutes + ' ' + ampm;
 
-
                         var showDateTime = formattedDate + ' ' + formattedTime;
-
-
                         $("#showtime").append('<option value="' + value.id + '">' + showDateTime + '</option>');
                     });
-
-
                 }
+            });
+        }
+    });
 
-            });
-            });
-            });
+    // When showtime is selected, update the hidden input field for showtime
+    $('#showtime').on('change', function () {
+        $('#selected_showtime').val(this.value);
+    });
+});
+
 
     </script>
 @endpush

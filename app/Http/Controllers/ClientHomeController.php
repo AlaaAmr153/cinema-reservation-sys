@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cinema;
 use App\Models\Movie;
+use App\Models\Seat;
 use App\Models\ShowTime;
 
 class ClientHomeController extends Controller
@@ -21,16 +22,19 @@ class ClientHomeController extends Controller
         return view('client.home', compact('cinemas', 'movies', 'showtimes', 'moviesInfo', 'moviesInfo2'));
     }
 
+
+
+
+// to fetch showtimes by movie
     public function getShowtimes(Request $request)
     {
-        // $cinema_id = $request->input('cinema');
         $movie_id = $request->movie_id;
         $showtimes = Showtime::where('movie_id', $movie_id)->get(['id', 'show_time', 'show_date']);
-
-        // return view('client.home', compact('cinemas', 'movies', 'showtimes'));
         return response()->json(['showtime' => $showtimes]);
-
     }
+
+
+
 
     public function bookShowtime(Request $request)
     {
@@ -48,7 +52,18 @@ class ClientHomeController extends Controller
         $movie_id = $request->input('movie');
         $showtimes = $request->input('showtime');
 
-        return view('client.booking', compact('cinema_id', 'movie_id', 'showtimes'));
+        $cinema = Cinema::findOrFail($cinema_id);
+        $movie = Movie::findOrFail($movie_id);
+        $showtime = Showtime::findOrFail($showtimes);
+
+
+        // $cinemas = Cinema::all();
+        // $movies = Movie::all();
+        // $showtimes = Showtime::all();
+
+        $seats = Seat::get('seat_cost');
+
+        return view('client.booking', compact('cinema', 'movie', 'showtime'));
         // return back()->with('success', 'Booking Successful!');
     }
 

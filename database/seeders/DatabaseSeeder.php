@@ -30,7 +30,9 @@ class DatabaseSeeder extends Seeder
            ScreenSeeder::class,
            ShowTimeSeeder::class,
            RoleSeeder::class,
-           AdminSeeder::class
+           AdminSeeder::class,
+           SeatSeeder::class,
+           ScreenHasSeatSeeder::class
         //    MovieImage::class
         ]);
     }
