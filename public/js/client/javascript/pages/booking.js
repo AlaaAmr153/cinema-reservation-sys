@@ -15,7 +15,7 @@
             const add = el.classList.contains('plus');
             const value = add ? Math.min(+input.value + 1, 99) : Math.max(+input.value - 1, 0);
             const data = {type: 'UPDATE_COMBO', [input.name]: value};
-            const req = await fetch('api/rest/updateBooking.php', {body: JSON.stringify(data), method: 'post'});
+            const req = await fetch('', {body: JSON.stringify(data), method: 'post'});
             const result = await req.json();
             if (result.success) input.value = value;
             panel_control.setAttribute('data-count', parseInt(combo_a.value) + parseInt(combo_b.value));
@@ -24,7 +24,7 @@
 
     const toSet = a => a.filter((v, i, a) => a.indexOf(v) === i);
     // fetch data
-    const res = await fetch('api/rest/showtime.php');
+    const res = await fetch('');
     const data = await res.json();
     showtime_el.value = document.URL.match(/showtime=(\d+)/)[1];
     let showtime = data.find(v => v.id === showtime_el.value);

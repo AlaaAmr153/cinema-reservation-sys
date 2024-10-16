@@ -7,7 +7,7 @@
 @endpush
 @section('content')
         <section class="hor_container"></section>
-        <section class="movie"></section>
+        <section class="movie"> </section>
 @endsection
 
 @push('script')
