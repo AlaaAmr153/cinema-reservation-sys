@@ -112,7 +112,13 @@
         {{-- @foreach ($seats as $seat )
         <p>Cost Of The Ticket : {{$seat->seat_cost}} </p>
         @endforeach --}}
-        <div class="layout"></div>
+
+            <div class="layout" id="seat-layout">
+                {{-- @foreach ($seats as $seat)
+                    <span class="seat {{ $seat->is_booked ? 'active' : '' }}" data-seat-id="{{ $seat->id }}">{{ $seat->seat_code }}</span>
+                @endforeach --}}
+            </div>
+
         <ul class="legends row">
             <li><span></span>Available</li>
             <li><span class="active"></span>Occupied</li>

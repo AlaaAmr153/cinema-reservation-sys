@@ -59,9 +59,9 @@
     <section class="movie">
 
         <div class="wrapper" onclick="location.href=''">
-            <a href="{{ route('client.movie', ['id' => $movie->id]) }}">
+            <a href="{{ route('client.movie', ['id' => $movie->id === $selectedMovieId]) }}">
             <img src="{{ asset($selectedMovie->poster) }}" alt="{{ $selectedMovie->title }}>">
-        </a>
+            </a>
         </div>
         <h2>{{ $selectedMovie->title }}</h2>
         <p>{{ $selectedMovie->duration }}</p>

@@ -141,7 +141,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/client/home', [ClientHomeController::class, 'getMovies'])->name('client.getMovies');
 
 
-    
+
     // Route::get('/movies/{movie}/showtimes', [ClientHomeController::class, 'getShowtimes']);
     // Route::get('/client/home/{cinemaId}/movies', [CinemaController::class, 'getMovies']);
     // Route::get('/client/home/{cinemaId}/movies/{movieId}/showtimes', [CinemaController::class, 'getShowtimes']);

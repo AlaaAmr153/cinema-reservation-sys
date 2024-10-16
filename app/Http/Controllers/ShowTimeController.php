@@ -192,13 +192,12 @@ class ShowTimeController extends Controller
     //         $subQuery->select('id')->from('screens')->where('cinema_id', $selectedCinemaId);
     //     });
     // })->get();
-
     $movies = Movie::all();
 
     $selectedMovie = $selectedMovieId ? Movie::findOrFail($selectedMovieId) : null;
-
     return view('client.showtime', compact('cinemas', 'selectedCinema', 'selectedMovie', 'selectedMovieId', 'movies'));
 }
+
 
 }
 

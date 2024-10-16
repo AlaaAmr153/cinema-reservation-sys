@@ -17,6 +17,7 @@ return new class extends Migration
             $table->boolean('is_booked');
             $table->decimal('seat_cost',8,2)->default(20);
             $table->boolean('under_maintainance')->nullable()->default(false);
+            $table->foreignId('show_time_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

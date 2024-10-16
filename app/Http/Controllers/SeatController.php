@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Seat;
+use App\Models\ShowTime;
 use Illuminate\Http\Request;
 
 class SeatController extends Controller
@@ -62,5 +63,12 @@ class SeatController extends Controller
     {
         //
     }
+
+    // public function fetchSeatData($showtimeId) {
+    //     $showtime = ShowTime::find($showtimeId);
+    //     $seats = $showtime->seats;
+
+    //     return response()->json(['seats' => $seats]);
+    // }
 
 }
