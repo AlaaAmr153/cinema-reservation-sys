@@ -254,6 +254,7 @@ class MovieSeeder extends Seeder
         $genres = MovieGenre::whereIn('genre', ['Drama', 'Fantasy'])->pluck('id')->toArray();
         $movie->moviegenre()->sync($genres);
 
+
         $movie = new Movie();
         $movie->title = 'Dolittle';
         $movie->poster = 'images/moviesposter/Dolittle.jpg';
