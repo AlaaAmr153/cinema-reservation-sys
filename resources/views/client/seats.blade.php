@@ -15,9 +15,5 @@
 @endsection
 
 @push('script')
-<script>
-    const showtimeId = '';
-    const seatDataUrl = '{{ route('fetch.seat.data', ['showtimeId' => ':showtimeId']) }}'.replace(':showtimeId', showtimeId);
-</script>
-    <script type='application/javascript' src='{{ asset('js/client/javascript/pages/booking.js') }}'></script>
+    <script type='application/javascript' src='{{ asset('js/client/javascript/pages/showtime.js') }}'></script>
 @endpush

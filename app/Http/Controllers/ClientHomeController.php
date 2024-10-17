@@ -61,18 +61,37 @@ class ClientHomeController extends Controller
         // $movies = Movie::all();
         // $showtimes = Showtime::all();
 
-        $seats = Seat::get('seat_cost');
+        $seats = Seat::all();
 
-        return view('client.booking', compact('cinema', 'movie', 'showtime'));
+        return view('client.booking', compact('cinema', 'movie', 'showtime','seats'));
         // return back()->with('success', 'Booking Successful!');
     }
 
     public function show($id)
     {
         $movieInfo = Movie::findOrFail($id);
-
-        // dd($movieInfo);
         return view('client.movie', compact('movieInfo'));
     }
+
+//     public function proceedToPayment(Request $request)
+//     {
+//         $validated = $request->validate([
+//             'cinemas' => 'required',
+//             'movie' => 'required|exists:movies,id',
+//             'showtime' => 'required|exists:show_times,id',
+//             'seats' => 'required|array',
+//         ]);
+
+//         $request->session()->put('booking_info', [
+//             'cinema_id' => $validated['cinemas'],
+//             'movie_id' => $validated['movie'],
+//             'showtime_id' => $validated['showtime'],
+//             'seats' => $validated['seats'],
+//         ]);
+//         return redirect()->route('client.payment');
+
+// }
+
+
 
 }

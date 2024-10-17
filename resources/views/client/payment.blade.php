@@ -21,24 +21,30 @@
                 <tbody>
 
                     <tr class='header expanded' onclick='this.classList.toggle("expanded")'>
-                        <td>Movie</td>
-                        <td>$30.00</td>
+                        <td>Movie - {{$movie->title }}</td>
+                        <td>per seat - {{$seat->seat_code}}</td>
                         <td><i data-icon='bin' data-id='44'></i></td>
                     </tr>
                     <tr class='sub'>
-                        <td colspan='3'>Cinema - Screen</td>
+                        <td colspan='3'>{{$cinema->cinema_name}}</td>
                     </tr>
                     <tr class='sub'>
-                        <td colspan='3'>date - time</td>
+                        <td colspan='3'>{{ $showtime->show_date }} - {{ $showtime->show_time }}</td>
                     </tr>
                     <tr class='sub'>
-                        <td colspan='3'>Seats</td>
+                        <td colspan='3'>
+                            <ul>
+                                @foreach ($seats as $seat)
+                                    <li>{{ $seat->seat_code }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td>Total Price:</td>
-                        <td>$price</td>
+                        <td>Total Price: </td>
+                        <td>{{ $totalPrice }} </td>
                         <td></td>
                     </tr>
                 </tfoot>

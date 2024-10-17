@@ -83,77 +83,97 @@ class ReservationController extends Controller
         //
     }
 
-    public function fetchShowtimes(Request $request)
+
+
+
+
+
+
+
+    // public function bookShowtime(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'cinemas' => 'required',
+    //         'movie' => 'required|exists:movies,id',
+    //         'showtime' => 'required|exists:show_times,id',
+    //         'seats' => 'required|array',
+    //     ]);
+
+    //     $movie_id = $request->input('movie');
+    //     $showtime_id = $request->input('showtime');
+    //     $selectedSeats = $request->input('seats');
+
+    //     // Initialize total price
+    //     $totalPrice = 0;
+
+    //     // Fetch the seat information and mark them as booked
+    //     foreach ($selectedSeats as $seat_id) {
+    //                 $seat = Seat::findOrFail($seat_id);
+    //         if (!$seat->is_booked) {
+    //             $seat->is_booked = true; // Mark as booked
+    //             $seat->save(); // Save the updated seat
+    //             $totalPrice += $seat->seat_cost; // Calculate total price
+    //         }
+    //     }
+
+    //     // Save reservation information
+    //     $reservation = new Reservation();
+    //     $reservation->no_of_tickets = count($selectedSeats);
+    //     $reservation->total_price = $totalPrice;
+    //     $reservation->booking_time = now();
+    //     $reservation->user_id = auth()->id; // Assuming user is authenticated
+    //     $reservation->movie_id = $movie_id;
+    //     $reservation->show_time_id = $showtime_id;
+    //     // Include screen ID if needed
+    //     $reservation->screen_id = $request->input('screen_id'); // Make sure to pass this in your form
+    //     $reservation->save();
+
+    //     return redirect()->route('client.payment')->with('success', 'Booking Successful!');
+    // }
+
+
+    public function finalizeBooking(Request $request)
     {
-        $movie_id = $request->movie_id;
-        $showtimes = ShowTime::where('movie_id', $movie_id)->get(['id', 'show_time', 'show_date']);
-        return response()->json(['showtime' => $showtimes]);
-
-    }
-
-
-
-
-
-
-    public function bookShowtime(Request $request)
-    {
-        $validated = $request->validate([
-            'cinemas' => 'required',
-            'movie' => 'required|exists:movies,id',
-            'showtime' => 'required|exists:show_times,id'
+        // Validate payment (you'll likely do this with your payment gateway)
+        $request->validate([
+            'payment_method' => 'required', // Example validation
         ]);
 
-        $cinema_id = $request->input('cinemas');
-        $movie_id = $request->input('movie');
-        $showtime_id = $request->input('showtime');
+        $bookingInfo = $request->session()->get('booking_info');
+        $totalPrice = 0;
 
-        $cinema = Cinema::findOrFail($cinema_id);
-        $movie = Movie::findOrFail($movie_id);
-        $showtime = Showtime::findOrFail($showtime_id);
-
-        return view('client.booking', compact('cinema', 'movie', 'showtime'));
-    }
-
-    // Save the reservation
-
-
-
-
-    public function book(Request $request)
-{
-    $request->validate([
-        'cinema' => 'required|integer',
-        'movie' => 'required|integer',
-        'showtime' => 'required|integer',
-        'seats' => 'required|string',
-    ]);
-
-    // Save booking details in the database
-    $booking = new Reservation();
-    $booking->cinema_id = $request->cinema;
-    $booking->movie_id = $request->movie;
-    $booking->showtime_id = $request->showtime;
-    $booking->seats = $request->seats; // Store selected seats as a string
-    $booking->user_id = auth()->id(); // Assuming user is authenticated
-    $booking->save();
-
-    // Optionally, you might want to mark seats as occupied
-    $selectedSeats = explode(',', $request->seats);
-    foreach ($selectedSeats as $seat) {
-        $seatModel = Seat::where('seat_number', $seat)
-                         ->where('showtime_id', $request->showtime)
-                         ->first();
-        if ($seatModel) {
-            $seatModel->occupied = true;
-            $seatModel->save();
+        // Mark seats as booked
+        foreach ($bookingInfo['seats'] as $seat_id) {
+            $seat = Seat::findOrFail($seat_id);
+            if (!$seat->is_booked) {
+                $seat->is_booked = true; // Mark as booked
+                $totalPrice += $seat->seat_cost; // Calculate total price
+                $seat->save(); // Save updated seat
+            }
         }
+
+        // Save reservation information
+        $reservation = new Reservation();
+        $reservation->no_of_tickets = count($bookingInfo['seats']);
+        $reservation->total_price = $totalPrice;
+        $reservation->booking_time = now();
+        $reservation->user_id = auth()->id; // Assuming user is authenticated
+        $reservation->movie_id = $bookingInfo['movie_id'];
+        $reservation->show_time_id = $bookingInfo['showtime_id'];
+        // Include screen ID if needed
+        $reservation->screen_id = $request->input('screen_id'); // Pass this from payment form if applicable
+        $reservation->save();
+
+        // Clear session data after saving
+        $request->session()->forget('booking_info');
+
+        return redirect()->route('client.movies')->with('success', 'Booking Successful!');
     }
-
-    return redirect()->route('booking.success'); // Redirect to a success page
 }
 
 
-}
+
+
+
 
 
