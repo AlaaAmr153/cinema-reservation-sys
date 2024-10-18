@@ -48,49 +48,29 @@ class ClientHomeController extends Controller
             'showtime.required'=> 'Please select a showtime.',
         ]);
 
-        $cinema_id = $request->input('cinemas');
-        $movie_id = $request->input('movie');
-        $showtimes = $request->input('showtime');
+        // $cinema_id = $request->input('cinemas');
+        // $movie_id = $request->input('movie');
+        // $showtimes = $request->input('showtime');
+        // $cinema = Cinema::findOrFail($cinema_id);
+        // $movie = Movie::findOrFail($movie_id);
+        // $showtime = Showtime::findOrFail($showtimes);
+        // $seats = Seat::all();
 
-        $cinema = Cinema::findOrFail($cinema_id);
-        $movie = Movie::findOrFail($movie_id);
-        $showtime = Showtime::findOrFail($showtimes);
+        $request->session()->put('booking_info', [
+            'cinema_id' => $validated['cinemas'],
+            'movie_id' => $validated['movie'],
+            'showtime_id' => $validated['showtime']
+        ]);
 
 
-        // $cinemas = Cinema::all();
-        // $movies = Movie::all();
-        // $showtimes = Showtime::all();
-
-        $seats = Seat::all();
-
-        return view('client.booking', compact('cinema', 'movie', 'showtime','seats'));
-        // return back()->with('success', 'Booking Successful!');
-    }
+        return redirect()->route('booking.showBooking'); // Redirect to booking page
+}
 
     public function show($id)
     {
         $movieInfo = Movie::findOrFail($id);
         return view('client.movie', compact('movieInfo'));
     }
-
-//     public function proceedToPayment(Request $request)
-//     {
-//         $validated = $request->validate([
-//             'cinemas' => 'required',
-//             'movie' => 'required|exists:movies,id',
-//             'showtime' => 'required|exists:show_times,id',
-//             'seats' => 'required|array',
-//         ]);
-
-//         $request->session()->put('booking_info', [
-//             'cinema_id' => $validated['cinemas'],
-//             'movie_id' => $validated['movie'],
-//             'showtime_id' => $validated['showtime'],
-//             'seats' => $validated['seats'],
-//         ]);
-//         return redirect()->route('client.payment');
-
-// }
 
 
 

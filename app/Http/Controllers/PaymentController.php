@@ -77,24 +77,22 @@ class PaymentController extends Controller
         }
 
         // Ensure keys exist before accessing
-        $cinema_id = $bookingInfo['cinema_id'] ?? null;
-        $movie_id = $bookingInfo['movie_id'] ?? null;
-        $showtime_id = $bookingInfo['showtime_id'] ?? null;
-        $seats = $bookingInfo['seats'] ?? [];
 
-        // Validate the keys
-        if (is_null($cinema_id) || is_null($movie_id) || is_null($showtime_id) || empty($seats)) {
-            return redirect()->route('client.home')->with('error', 'Incomplete booking information.');
-        }
+        $cinema = Cinema::findOrFail($bookingInfo['cinema_id']);
+        $movie = Movie::findOrFail($bookingInfo['movie_id']);
+        $showtime = ShowTime::findOrFail($bookingInfo['showtime_id']);
+        // $seats = Seat::findMany($bookingInfo['seats']); //
 
-        return view('client.payment', compact('cinema', 'movie', 'showtime', 'seats'));
+
+
+        return view('client.payment', compact('cinema', 'movie', 'showtime'));
     }
 
 
 
 public function proceedToPayment(Request $request)
 {
-
+    // dd($request->all());
     $validated = $request->validate([
         'cinemas' => 'required',
         'movie' => 'required|exists:movies,id',
@@ -106,8 +104,9 @@ public function proceedToPayment(Request $request)
         'cinema_id' => $validated['cinemas'],
         'movie_id' => $validated['movie'],
         'showtime_id' => $validated['showtime'],
-        'seats' => $validated['seats'],
+        'seats' => $validated['seats'], // Store selected seats
     ]);
+
     return redirect()->route('payments.showPaymentPage');
 
 }

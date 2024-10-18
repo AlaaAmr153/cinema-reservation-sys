@@ -44,14 +44,19 @@
             <input type="hidden" id="movie" name="movie" value="{{ $movie->id }}">
             <input type="hidden" id="showtime" name="showtime" value="{{ $showtime->id }}">
 
-            <label for="cinema" class="select" data-icon-before="location"><span>{{ $cinema->cinema_name }}</span></label>
-            <label for="day" class="select" data-icon-before="date"><span>{{ $movie->title }}</span></label>
-            <label class="select" data-icon-before="time"><span> date:{{ $showtime->show_date }}
-                    time:{{ $showtime->show_time }}</span></label>
+            <label for="cinema" class="select" data-icon-before="location">
+                <span>{{ $cinema->cinema_name }}</span>
+            </label>
 
+            <label for="day" class="select" data-icon-before="date">
+                <span>{{ $movie->title }}</span>
+            </label>
+            <label class="select" data-icon-before="time">
+                <span> date:{{ $showtime->show_date }}
+                    time:{{ $showtime->show_time }}</span>
+            </label>
 
-
-            <a href="{{ route('payments.showPaymentPage') }}" class="raised-button primary">next</a>
+            <a href="{{route('payments.showPaymentPage')}}" class="raised-button primary">next</a>
 
             {{-- <form  class="flex" id="bookingForm" method="POST" action="{{ route('client.book') }}">
             @csrf
@@ -119,12 +124,12 @@
             <div style="padding-left:40px; display: flex; flex-wrap: wrap;">
                 @foreach ($seats as $seat)
                     <div style="flex: 0 0 10%; padding: 10px; display: flex; align-items: center;">
-                        <input type="checkbox" id="seats" name="seats[]" value="{{ $seat->id }}"
+                        <input type="checkbox" id="seat_{{ $seat->id }}" name="seats[]" value="{{ $seat->id }}"
                             {{ $seat->is_booked ? 'disabled' : '' }}
                             style="transform: scale(1.5); margin-right: 8px; cursor: pointer; background-color:#f1b451 ;" />
-                        <label style="color: #f1b451">{{ $seat->seat_code }}</label>
+                        <label for="seat_{{ $seat->id }}" style="color: #f1b451">{{ $seat->seat_code }}</label>
                     </div>
-                    <input type="hidden" id="seats" name="seats" value="{{ $seat->id }}">
+                    <input type="hidden" id="seats" name="seats[]" value="{{ $seat->id }}">
 
                 @endforeach
             </div>

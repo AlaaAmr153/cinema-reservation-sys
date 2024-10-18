@@ -137,7 +137,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/client/home', [ClientHomeController::class, 'index'])->name('client.home');
     Route::post('/client/home/showtimes', [ClientHomeController::class, 'getShowtimes'])->name('client.showtime');
-    Route::post('/client/home/booking', [ClientHomeController::class, 'bookShowtime'])->name('client.book');
+    Route::post('/home/booking', [ClientHomeController::class, 'bookShowtime'])->name('client.book');
     Route::get('/client/home/movie/{id}', [ClientHomeController::class, 'show'])->name('movieinfo.show');
     Route::post('/client/home', [ClientHomeController::class, 'getMovies'])->name('client.getMovies');
 
@@ -161,6 +161,7 @@ Route::get('/client/payment', [PaymentController::class, 'showPaymentPage'])->na
 
 //reservation
 Route::post('/reservation', [ReservationController::class, 'finalizeBooking'])->name('client.finalizeBooking');
+Route::get('/booking',[ReservationController::class,'showBooking'])->name('booking.showBooking');
 });
 
 
