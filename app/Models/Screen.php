@@ -22,7 +22,7 @@ class Screen extends Model
     {
         return $this->hasMany(ShowTime::class);
     }
-    public function seat()
+    public function seats()
     {
         return $this->belongsToMany(Seat::class, 'screen_has_seat', 'screen_id', 'seat_id', 'id', 'id');
     }

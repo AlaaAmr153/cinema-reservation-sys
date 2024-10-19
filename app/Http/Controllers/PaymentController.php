@@ -13,9 +13,8 @@ class PaymentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('client.payment');
     }
 
     /**
@@ -65,7 +64,6 @@ class PaymentController extends Controller
     {
         //
     }
-
     public function showPaymentPage(Request $request)
     {
         $bookingInfo = $request->session()->get('booking_info');

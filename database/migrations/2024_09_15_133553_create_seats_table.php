@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
             $table->string('seat_code');
-            $table->boolean('is_booked');
-            $table->boolean('under_maintainance')->nullable();
+            $table->boolean('is_booked')->default(false);
+            $table->decimal('seat_cost',8,2)->default(20);
+            $table->boolean('under_maintainance')->nullable()->default(false);
+            $table->foreignId('show_time_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

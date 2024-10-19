@@ -34,9 +34,9 @@
                     <tr class='sub'>
                         <td colspan='3'>
                             <ul>
-                                {{-- @foreach ($seats as $seat)
-                                    <li>{{ $seat->seat_code }}</li>
-                                @endforeach --}}
+                                @foreach ($seats as $seat)
+                                    <li>{{ $seat }}</li>
+                                @endforeach
                             </ul>
                         </td>
                     </tr>

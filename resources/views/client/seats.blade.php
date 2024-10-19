@@ -7,7 +7,11 @@
 @endpush
 @section('content')
         <section class="hor_container"></section>
-        <section class="movie"></section>
+        <section class="movie"> </section>
+
+        <div class="seat-container">
+
+        </div>
 @endsection
 
 @push('script')

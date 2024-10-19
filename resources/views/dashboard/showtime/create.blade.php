@@ -6,14 +6,14 @@
     </x-slot>
 
     <div class="max-w-full mx-auto sm:px-3 lg:px-4 mt-6 ">
-        <div class="bg-black overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="flex items-start justify-start p-12">
                 <div class="w-full max-w-[550px] ">
                     <form method="POST" action="{{ route('showtimes.store') }}">
                         @csrf
                         <div class="mb-5">
                             <x-input-label>Choose Movie</x-input-label>
-                            <div class="relative rounded-md border bg-white border-[#e0e0e0] font-medium text-[#6B7280]">
+                            {{-- <div class="relative rounded-md border bg-white border-[#e0e0e0] font-medium text-[#6B7280]">
                                 <!-- Selectbox Header -->
                                 <div class="selectbox-header cursor-pointer" id="selectboxHeader"
                                     onclick="toggleOptions()">
@@ -34,7 +34,16 @@
                                 </ul>
                             </div>
 
-                            <input type="hidden" name="movie_id" id="selectedMovieId">
+                            <input type="hidden" name="movie_id" id="selectedMovieId"> --}}
+                            <select id="movie_id" name="movie_id"
+                                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-black focus:shadow-md mb-3">
+                                <option value="">Select movie</option>
+                                @foreach ($movies as $movie)
+                                    <option value="{{ $movie->id }}"
+                                        {{ old('movie_id') == $movie->id ? 'selected' : '' }}>
+                                        {{ $movie->title }}</option>
+                                @endforeach
+                            </select>
 
                             <!-- Error Message -->
                             @error('movie_id')
@@ -111,7 +120,8 @@
                         </div>
                         <div>
                             <button
-                                class="hover:shadow-form w-full mt-5 rounded-md bg-yellow-400 py-3 px-8 text-center text-base font-semibold text-black outline-none">
+                            class="hover:shadow-form w-full rounded-md bg-black py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                            
                                 Save Changes
                             </button>
                         </div>

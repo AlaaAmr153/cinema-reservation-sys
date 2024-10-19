@@ -57,9 +57,11 @@
 
 
     <section class="movie">
-        {{-- {{ route('movies.show', ['movie' => $selectedMovie->id]) }} --}}
+
         <div class="wrapper" onclick="location.href=''">
+            <a href="{{ route('client.movie', ['id' => $movie->id === $selectedMovieId]) }}">
             <img src="{{ asset($selectedMovie->poster) }}" alt="{{ $selectedMovie->title }}>">
+            </a>
         </div>
         <h2>{{ $selectedMovie->title }}</h2>
         <p>{{ $selectedMovie->duration }}</p>
@@ -69,5 +71,4 @@
 
 @push('script')
     <script type='application/javascript' src='{{ asset('js/client/javascript/pages/showtime.js') }}'></script>
-
 @endpush

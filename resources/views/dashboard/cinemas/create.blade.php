@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div class="max-w-full mx-auto sm:px-3 lg:px-4 mt-6 ">
-        <div class="bg-black overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="flex items-start justify-start p-12">
                 <div class="w-full max-w-[550px] ">
                     <form method="post" action="{{ route('cinemas.store') }}" enctype="multipart/form-data">
@@ -70,8 +70,8 @@
                         </div>
                         <div>
                             <button type="submit"
-                                class="hover:shadow-form w-full rounded-md bg-yellow-400 py-3 px-8 text-center text-base font-semibold text-black outline-none">
-                                Add New Cinema
+                            class="hover:shadow-form w-full rounded-md bg-black py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                            Add New Cinema
                             </button>
                         </div>
                     </form>
