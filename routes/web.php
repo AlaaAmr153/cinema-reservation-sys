@@ -13,6 +13,8 @@ use App\Http\Controllers\ShowTimeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientHomeController;
 use App\Http\Controllers\MovieInfoController;
+use App\Http\Controllers\ReservationController;
+use App\Models\Payment;
 use App\Models\Seat;
 use Illuminate\Support\Facades\Route;
 
@@ -111,11 +113,11 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::controller(PaymentController::class)->prefix('payments')->name('payments.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('create', 'create')->name('create');
-        Route::post('store', 'store')->name('store');
-    });
+    // Route::controller(PaymentController::class)->prefix('payments')->name('payments.')->group(function () {
+    //     Route::get('/', 'index')->name('index');
+    //     Route::get('create', 'create')->name('create');
+    //     Route::post('store', 'store')->name('store');
+    // });
 
     Route::controller(UserController::class)->prefix('users')->name('users.')->group(function () {
         Route::get('/', 'index')->name('index');
@@ -130,52 +132,38 @@ Route::middleware('auth')->group(function () {
     });
 
 
-<<<<<<< HEAD
 
 
 
     Route::get('/client/home', [ClientHomeController::class, 'index'])->name('client.home');
     Route::post('/client/home/showtimes', [ClientHomeController::class, 'getShowtimes'])->name('client.showtime');
-    Route::post('/client/home/booking', [ClientHomeController::class, 'bookShowtime'])->name('client.book');;
+    Route::post('/home/booking', [ClientHomeController::class, 'bookShowtime'])->name('client.book');
     Route::get('/client/home/movie/{id}', [ClientHomeController::class, 'show'])->name('movieinfo.show');
-    // Route::get('/movies/{movie}/showtimes', [ClientHomeController::class, 'getShowtimes']);
-    // Route::get('/client/home/{cinemaId}/movies', [CinemaController::class, 'getMovies']);
-    // Route::get('/client/home/{cinemaId}/movies/{movieId}/showtimes', [CinemaController::class, 'getShowtimes']);
-
-    // Route::get('/client/home/movie',[MovieInfoController::class,'index'])->name('client.index');
-    // Route::get('/client/home/movie/{id}',[MovieInfoController::class,'show'])->name('movieinfo.show');
+    Route::post('/client/home', [ClientHomeController::class, 'getMovies'])->name('client.getMovies');
 
 
 
 
-// Route::view('/client/home', 'client.home')->name('client.home');
-Route::view('/client/movies', 'client.movies')->name('client.movies');
-Route::view('/client/cinemas', 'client.cinemas')->name('client.cinemas');
-Route::view('/client/contact', 'client.contact')->name('client.contact');
-Route::view('/client/payment', 'client.payment');
-// Route::view('/client/movie', 'client.movie');
-Route::view('/client/showtime', 'client.showtime');
-Route::view('/client/user', 'client.user');
-=======
-Route::view('/client/home', 'client.home')->name('client.home');
-// Route::view('/client/payment', 'client.payment');
-// Route::view('/client/movie', 'client.movie');
-// Route::view('/client/payment', 'client.payment');
-// Route::view('/client/showtime', 'client.showtime');
-// Route::view('/client/user', 'client.user');
->>>>>>> d0f0e31d090aa1043fa135341faddbf4bc75e55d
 
-
-    // Route::resource('movies',MovieController::class);
-    // Route::resource('showtimes',ShowTimeController::class);
-    // Route::resource('seats',SeatController::class);
-    // Route::resource('cinemas',CinemaController::class);
-    // Route::resource('screens',ScreenController::class);
-
+    Route::resource('reservations',ReservationController::class);
     Route::resource('users',UserController::class);
 
 
+    //showtime route
+Route::get('/client/showtimes',[ShowTimeController::class,'display_showtime'])->name('showtimes.display_showtime');
+
+//booking
+
+
+//payment
+Route::POST('/payment', [PaymentController::class, 'proceedToPayment'])->name('payments.proceedToPayment');
+Route::get('/client/payment', [PaymentController::class, 'showPaymentPage'])->name('payments.showPaymentPage');
+
+//reservation
+Route::post('/reservation', [ReservationController::class, 'finalizeBooking'])->name('client.finalizeBooking');
+Route::get('/booking',[ReservationController::class,'showBooking'])->name('booking.showBooking');
 });
+
 
 //movie controller
 Route::get('/client/movies',[MovieController::class,'clientIndex'])->name('movies.clientIndex');
@@ -185,10 +173,8 @@ Route::get('client/movies/{id}', [MovieController::class, 'show'])->name('client
 Route::get('/client/cinemas',[CinemaController::class,'cinemaindex'])->name('cinemas.cinemaindex');
 
 
-// Route::get('/search',[SearchController::class,'index'])->name('search.index');
 
-//showtime route
-Route::get('/client/showtimes',[ShowTimeController::class,'display_showtime'])->name('showtimes.display_showtime');
+
 
 
 require __DIR__ . '/auth.php';

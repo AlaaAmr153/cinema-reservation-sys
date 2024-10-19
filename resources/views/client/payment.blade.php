@@ -4,12 +4,11 @@
 @endsection
 @push('style')
     <link rel='stylesheet' href='{{ asset('css/client/style/pages/payment.css') }}'>
+
 @endpush
 @section('content')
         <section class="left">
-            <h2>payment summary
-                <a href="#">Buy More ></a>
-            </h2>
+            <h2>payment summary</h2>
             <table>
                 <thead>
                     <tr>
@@ -19,26 +18,33 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    {{-- {{$seat->seat_code}} --}}
                     <tr class='header expanded' onclick='this.classList.toggle("expanded")'>
-                        <td>Movie</td>
-                        <td>$30.00</td>
-                        <td><i data-icon='bin' data-id='44'></i></td>
+                        <td>Movie - {{$movie->title }}</td>
+                        <td>per seat - </td>
+                        <td><i class="fa-solid fa-trash text-lg"
+                            style="color: #ff0000;"></i></td>
                     </tr>
                     <tr class='sub'>
-                        <td colspan='3'>Cinema - Screen</td>
+                        <td colspan='3'>{{$cinema->cinema_name}}</td>
                     </tr>
                     <tr class='sub'>
-                        <td colspan='3'>date - time</td>
+                        <td colspan='3'>{{ $showtime->show_date }} - {{ $showtime->show_time }}</td>
                     </tr>
                     <tr class='sub'>
-                        <td colspan='3'>Seats</td>
+                        <td colspan='3'>
+                            <ul>
+                                {{-- @foreach ($seats as $seat)
+                                    <li>{{ $seat->seat_code }}</li>
+                                @endforeach --}}
+                            </ul>
+                        </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td>Total Price:</td>
-                        <td>$price</td>
+                        <td>Total Price: </td>
+                        {{-- <td>{{ $totalPrice }} </td> --}}
                         <td></td>
                     </tr>
                 </tfoot>
