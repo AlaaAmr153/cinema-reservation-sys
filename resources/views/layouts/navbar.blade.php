@@ -54,7 +54,7 @@
                     </a>
                 @endauth
             </div>
-            <a href='#' class='user-pic'></a>
+            <a href='{{route('client.user')}}' class='user-pic'></a>
         </div>
    </div>
 </nav>

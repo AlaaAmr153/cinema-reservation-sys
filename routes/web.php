@@ -143,7 +143,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-
+    Route::view('/client/user', 'client.user')->name('client.user');
 
     Route::resource('reservations',ReservationController::class);
     Route::resource('users',UserController::class);
@@ -158,9 +158,10 @@ Route::get('/client/showtimes',[ShowTimeController::class,'display_showtime'])->
 //payment
 Route::POST('/payment', [PaymentController::class, 'proceedToPayment'])->name('payments.proceedToPayment');
 Route::get('/client/payment', [PaymentController::class, 'showPaymentPage'])->name('payments.showPaymentPage');
+Route::post('/payments', [PaymentController::class, 'finalizeBooking'])->name('payments.finalizeBooking');
+
 
 //reservation
-Route::post('/reservation', [ReservationController::class, 'finalizeBooking'])->name('client.finalizeBooking');
 Route::get('/booking',[ReservationController::class,'showBooking'])->name('booking.showBooking');
 });
 

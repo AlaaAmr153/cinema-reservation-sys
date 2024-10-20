@@ -31,9 +31,12 @@
         const fd = new FormData();
         fd.append('name', form.name.value);
         fd.append('email', form.email.value);
-        const res = await fetch('api/rest/makeBooking.php', {
+        const res = await fetch('{{route("payments.finalizeBooking")}}', {
             method: 'post',
-            body: fd
+            body: fd,
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}' 
+            }
         });
         const data = await res.json();
         if (data.success) {
@@ -79,7 +82,10 @@
     form.name.addEventListener('change', validate_form);
     form.email.addEventListener('change', validate_form);
 
-    pay_btn.addEventListener('click', makePayment);
+    pay_btn.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent the default form submission
+        makePayment();
+    });
 
     [...document.querySelectorAll('i[data-id]')].forEach(el => {
         el.parentElement.addEventListener('click', e => e.stopPropagation());

@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Cinema;
 use App\Models\Movie;
+use App\Models\Payment;
 use App\Models\Reservation;
 use App\Models\Screen;
 use App\Models\ScreenHasSeat;
 use App\Models\Seat;
 use App\Models\ShowTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -124,34 +126,29 @@ private function checkIfBooked($seatId, $showtime)
 }
 
 
-    public function finalizeBooking(Request $request)
-    {
-        $request->validate([
-            'payment_method' => 'required',
-        ]);
+ 
 
-        $bookingInfo = $request->session()->get('booking_info');
-        $totalPrice = 0;
+        // $bookingInfo = $request->session()->get('booking_info');
 
-        // Mark seats as booked
-        Seat::whereIn('id', $bookingInfo['seats'])->update(['is_booked' => true]);
+        // // Mark seats as booked
+        // Seat::whereIn('id', $bookingInfo['seats'])->update(['is_booked' => true]);
 
-        // Save reservation information
-        $reservation = new Reservation();
-        $reservation->no_of_tickets = count($bookingInfo['seats']);
-        $reservation->total_price = $totalPrice;
-        $reservation->booking_time = now();
-        $reservation->user_id = auth()->id;
-        $reservation->movie_id = $bookingInfo['movie_id'];
-        $reservation->show_time_id = $bookingInfo['showtime_id'];
-        $reservation->screen_id = $request->input('screen_id');
-        $reservation->save();
+        // // Save reservation information
+        // $reservation = new Reservation();
+        // $reservation->no_of_tickets = count($bookingInfo['seats']);
+        // $reservation->total_price = $totalPrice;
+        // $reservation->booking_time = now();
+        // $reservation->user_id = auth()->id;
+        // $reservation->movie_id = $bookingInfo['movie_id'];
+        // $reservation->show_time_id = $bookingInfo['showtime_id'];
+        // $reservation->screen_id = $request->input('screen_id');
+        // $reservation->save();
 
-        $request->session()->forget('booking_info');
+        // $request->session()->forget('booking_info');
 
-        return redirect()->route('client.movies')->with('success', 'Booking Successful!');
+        // return redirect()->route('client.movies')->with('success', 'Booking Successful!');
     }
-}
+
 
 
 

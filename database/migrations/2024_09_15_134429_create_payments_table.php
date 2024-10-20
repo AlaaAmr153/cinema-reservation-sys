@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->enum('pay_method',['cash','visa','paypal']);
-            $table->enum('status',['completed','not_completed']);
+            $table->string('name');
+            $table->string('email');
+            $table->enum('method',['credit','visa','paypal','master']);
+            // $table->enum('status',['completed','not_completed']);
             $table->dateTime('payment_time');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('reservation_id')->constrained();

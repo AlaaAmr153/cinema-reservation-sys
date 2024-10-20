@@ -48,14 +48,6 @@ class ClientHomeController extends Controller
             'showtime.required'=> 'Please select a showtime.',
         ]);
 
-        // $cinema_id = $request->input('cinemas');
-        // $movie_id = $request->input('movie');
-        // $showtimes = $request->input('showtime');
-        // $cinema = Cinema::findOrFail($cinema_id);
-        // $movie = Movie::findOrFail($movie_id);
-        // $showtime = Showtime::findOrFail($showtimes);
-        // $seats = Seat::all();
-
         $request->session()->put('booking_info', [
             'cinema_id' => $validated['cinemas'],
             'movie_id' => $validated['movie'],

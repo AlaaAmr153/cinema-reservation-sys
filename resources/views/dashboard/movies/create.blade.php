@@ -10,7 +10,7 @@
             @csrf
             <div class="grid grid-rows-4 grid-flow-col gap-4">
                 <div class="mb-4">
-                    <label for="title" class="block text-white text-sm font-bold mb-2 capitalize">Title:</label>
+                    <label for="title" class="block text-black text-sm font-bold mb-2 capitalize">Title:</label>
                     <input type="text" id="title" name="title" value="{{ old('title') }}"
                         class="form-input mt-1 block w-full rounded-md shadow-sm focus:outline-none border border-black/15 p-2">
                     @error('title')
@@ -18,7 +18,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="description" class="block text-white text-sm font-bold mb-2">Description:</label>
+                    <label for="description" class="block text-black text-sm font-bold mb-2">Description:</label>
                     <textarea id="description" name="description" value="{{ old('description') }}"
                         class="form-textarea mt-1 block w-full rounded-md shadow-sm border border-black/15 p-2"></textarea>
                     @error('description')
@@ -26,7 +26,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="cast" class="block text-white text-sm font-bold mb-2">Cast:</label>
+                    <label for="cast" class="block text-black text-sm font-bold mb-2">Cast:</label>
                     <textarea id="cast" name="cast" value="{{ old('cast') }}"
                         class="form-textarea mt-1 block w-full rounded-md shadow-sm border border-black/15 p-2"></textarea>
                     @error('cast')
@@ -34,7 +34,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="genre_id" class="block text-white text-sm font-bold mb-2">Genre:</label>
+                    <label for="genre_id" class="block text-black text-sm font-bold mb-2">Genre:</label>
                     <select name="genre_id[]" multiple
                         class="form-input mt-1 block w-full rounded-md shadow-sm focus:outline-none border border-black/15 p-2">
                         @foreach ($genres as $genre)
@@ -46,7 +46,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="director" class="block text-white text-sm font-bold mb-2">Director:</label>
+                    <label for="director" class="block text-black text-sm font-bold mb-2">Director:</label>
                     <input id="director" name="director" value="{{ old('director') }}"
                         class="form-input mt-1 block w-full rounded-md shadow-sm focus:outline-none border border-black/15 p-2">
                     @error('director')
@@ -54,7 +54,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="duration" class="block text-white text-sm font-bold mb-2">Duration:</label>
+                    <label for="duration" class="block text-black text-sm font-bold mb-2">Duration:</label>
                     <input id="duration" name="duration" value="{{ old('duration') }}"
                         class="form-input mt-1 block w-full rounded-md shadow-sm focus:outline-none border border-black/15 p-2">
                     @error('duration')
@@ -62,7 +62,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="release_date" class="block text-white text-sm font-bold mb-2">Release Date:</label>
+                    <label for="release_date" class="block text-black text-sm font-bold mb-2">Release Date:</label>
                     <input id="release_date" name="release_date" type="date" value="{{ old('release_date') }}"
                         class="form-input mt-1 block w-full rounded-md shadow-sm focus:outline-none border border-black/15 p-2">
                     @error('release_date')
@@ -70,7 +70,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="rating" class="block text-white text-sm font-bold mb-2">Rating:</label>
+                    <label for="rating" class="block text-black text-sm font-bold mb-2">Rating:</label>
                     <input id="rating" name="rating" value="{{ old('rating') }}"
                         class="form-input mt-1 block w-full rounded-md shadow-sm focus:outline-none border border-black/15 p-2">
                     @error('rating')
@@ -78,7 +78,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="country_id" class="block text-white text-sm font-bold mb-2">Country:</label>
+                    <label for="country_id" class="block text-black text-sm font-bold mb-2">Country:</label>
                     <select name="country_id"
                         class="form-input mt-1 block w-full rounded-md shadow-sm focus:outline-none border border-black/15 p-2">
                         @foreach ($countries as $country)
@@ -90,7 +90,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="poster" class="block text-white text-sm font-bold mb-2">Movie Poster:</label>
+                    <label for="poster" class="block text-black text-sm font-bold mb-2">Movie Poster:</label>
                     <input type="file" id="poster" name="poster"
                         class="form-input mt-1 block w-full rounded-md shadow-sm focus:outline-none border border-black/15 p-2">
                     @error('poster')
@@ -98,7 +98,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="image" class="block text-white text-sm font-bold mb-2">Movie Images:</label>
+                    <label for="image" class="block text-black text-sm font-bold mb-2">Movie Images:</label>
                     <input type="file" id="image" name="image[]" multiple
                         class="form-input mt-1 block w-full rounded-md shadow-sm focus:outline-none border border-black/15 p-2">
                     @error('image')
@@ -106,7 +106,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="trailer" class="block text-white text-sm font-bold mb-2">Trailer:</label>
+                    <label for="trailer" class="block text-black text-sm font-bold mb-2">Trailer:</label>
                     <input id="trailer" name="trailer" type="url" value="{{ old('trailer') }}"
                         class="form-input mt-1 block w-full rounded-md shadow-sm focus:outline-none border border-black/15 p-2">
                     @error('trailer')

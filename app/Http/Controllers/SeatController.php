@@ -64,11 +64,5 @@ class SeatController extends Controller
         //
     }
 
-    // public function fetchSeatData($showtimeId) {
-    //     $showtime = ShowTime::find($showtimeId);
-    //     $seats = $showtime->seats;
-
-    //     return response()->json(['seats' => $seats]);
-    // }
 
 }

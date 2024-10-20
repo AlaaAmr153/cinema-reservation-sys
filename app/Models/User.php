@@ -59,4 +59,35 @@ class User extends Authenticatable
         return $this->hasMany(Feedback::class);
     }
 
+    public function upcomingReservations()
+    {
+        return $this->reservation()->whereHas('showtime', function ($query) {
+            $query->where('show_date', '>', now());
+        })->get();
+    }
+    public function pastReservations()
+    {
+        return $this->reservation()->whereHas('showtime', function ($query) {
+            $query->where('show_date', '<=', now());
+        })->get();
+    }
+    public function getRecommendedMovies()
+    {
+        $userGenreIds = $this->reservation()
+            ->with('movie.moviegenre')
+            ->get()
+            ->flatMap(function ($reservation) {
+                return $reservation->movie->moviegenre->pluck('id');
+            })
+            ->unique();
+        $reservedMovieIds = $this->reservation()->pluck('movie_id');
+        return Movie::whereHas('moviegenre', function ($query) use ($userGenreIds) {
+            $query->whereIn('movie_genre_id', $userGenreIds);
+        })
+            ->whereNotIn('id', $reservedMovieIds)
+            ->take(5)
+            ->get();
+    }
 }
+
+

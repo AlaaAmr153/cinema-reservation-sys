@@ -99,7 +99,7 @@ class MovieController extends Controller
             'release_date' => 'required|date',
             'rating' => 'nullable|numeric|min:0|max:10',
             'country_id' => 'required|exists:countries,id',
-            'poster' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'poster' => 'image|mimes:jpeg,png,jpg|max:2048',
             'image' => 'nullable|array',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'genre_id' => 'required|exists:movie_genres,id',
